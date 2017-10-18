@@ -24,6 +24,7 @@ using Led   = USBDM::GpioA<2,USBDM::ActiveLow>;
 
 int main() {
 //   printf("Starting\n");
+//   printf("Starting\n");
 
 //   printf("SystemBusClock  = %ld\n", ::SystemBusClock);
 //   printf("SystemCoreClock = %ld\n", ::SystemCoreClock);
