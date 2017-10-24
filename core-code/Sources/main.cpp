@@ -36,7 +36,10 @@ static buttonState buttonData;
 
 static enum screens currentScreen;
 
+
 int main() {
+
+	timeSetScreenData.cursor = 0;
 
 	currentTime.hr = 0;
 	currentTime.min = 0;
@@ -55,7 +58,7 @@ int main() {
 	      Led::toggle();
 ////		  asm("wfi");
 		  waitMS(250);
-		  drawScreen((screens)0);
+		  drawScreen((screens)2);
 //		  currentTime.sec += 1;
 //	   printf("l\n");
 	   switchTest();
@@ -78,7 +81,7 @@ void drawScreen(enum screens currentScreen) {
 //		drawAlarmScreen(&currentTime);
 		break;
 	case timeSetScreen :
-//		drawTimeSetScreen(&currentTime, &timeSetScreenData);
+		drawTimeSetScreen(&currentTime, timeSetScreenData);
 		break;
 	case alarmSetScreen :
 //		drawAlarmSetScreen(&alarmTime, &alarmSetScreenData);

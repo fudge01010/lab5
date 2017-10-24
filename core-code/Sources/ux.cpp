@@ -335,4 +335,48 @@ void drawAlarmScreen (timeData currentTime) {
 	lcd.putStr(intToChar(currentTime.sec), CENTRE_X+16, CENTRE_Y-8, largeFont, FOREGROUND_COLOUR, BLUE);
 }
 
+void drawTimeSetScreen(struct timeData *currentTime, struct timeSetData setData) {
+//	0,0 bottom left with ribbon cable upwards
 
+//	int8_t hr = currentTime->hr;
+//	char* hr = 0;
+//	sprintf(hr, "%d", h);
+
+//  lcd.putStr("Memes", 30, 10, largeFont, FOREGROUND_COLOUR, PINK);
+
+	//Centre Position
+//	lcd.drawLine(CENTRE_X+100, CENTRE_Y, CENTRE_X-100, CENTRE_Y, RED);
+//	lcd.drawLine(CENTRE_X, CENTRE_Y+100, CENTRE_X, CENTRE_Y-100, RED);
+
+	//Bottom
+	lcd.drawLine(CENTRE_X-50, CENTRE_Y-30, CENTRE_X+50, CENTRE_Y-30, WHITE);
+	//Left
+	lcd.drawLine(CENTRE_X-50, CENTRE_Y-30, CENTRE_X-50, CENTRE_Y+30, WHITE);
+	//Top
+	lcd.drawLine(CENTRE_X-50, CENTRE_Y+30, CENTRE_X+50, CENTRE_Y+30, WHITE);
+	//Right
+	lcd.drawLine(CENTRE_X+50, CENTRE_Y+30, CENTRE_X+50, CENTRE_Y-30, WHITE);
+
+	 //DotDot
+	lcd.putStr(":", CENTRE_X-16, CENTRE_Y-8, largeFont, FOREGROUND_COLOUR, BACKGROUND_COLOUR);
+	//TimeHours
+	if (setData.cursor == 0)
+	{
+		//draw the kerser here
+		lcd.putStr(intToChar(currentTime->hr), CENTRE_X-32, CENTRE_Y-8, largeFont, BLACK, WHITE);
+	} else {
+		lcd.putStr(intToChar(currentTime->hr), CENTRE_X-32, CENTRE_Y-8, largeFont, FOREGROUND_COLOUR, BACKGROUND_COLOUR);
+	}
+
+
+
+
+    //TimeMinutes
+    lcd.putStr(intToChar(currentTime->min), CENTRE_X-8, CENTRE_Y-8, largeFont, FOREGROUND_COLOUR, BACKGROUND_COLOUR);
+
+    //DotDot
+    lcd.putStr(":", CENTRE_X+8, CENTRE_Y-8, largeFont, FOREGROUND_COLOUR, BACKGROUND_COLOUR);
+
+    //TimeSeconds
+    lcd.putStr(intToChar(currentTime->sec), CENTRE_X+16, CENTRE_Y-8, largeFont, FOREGROUND_COLOUR, BACKGROUND_COLOUR);
+}
