@@ -13,6 +13,7 @@
 #include "derivative.h"
 #include "hardware.h"
 #include "ux.h"
+#include "switch-interrupt.h"
 
 
 // Allow access to USBDM methods without USBDM:: prefix
@@ -30,6 +31,8 @@ static struct alarmSetData alarmSetScreenData;
 static struct settingsScrData settingsScreenData;
 static struct globalOpt globalSettings;
 
+static buttonState buttonData;
+
 static enum screens currentScreen;
 
 int main() {
@@ -37,13 +40,24 @@ int main() {
 	currentTime.hr = 0;
 	currentTime.min = 0;
 	currentTime.sec = 0;
+	printf("test\n");
+	buttonData.triggered = false;
+	configure5wayInterrupt(&buttonData);
+	if (buttonData.triggered == true)
+	{
+		printf("holy fuck I am good");
+	}
+	printf("config'd\n");
+
    for(;;) {
-	   	  //during debugging, this is our "heartbeat" LED"
-	      Led::toggle();
-//		  asm("wfi");
-		  waitMS(1000);
-		  drawScreen((screens)0);
-		  currentTime.sec += 1;
+//	   	  //during debugging, this is our "heartbeat" LED"
+//	      Led::toggle();
+////		  asm("wfi");
+//		  waitMS(1000);
+//		  drawScreen((screens)0);
+//		  currentTime.sec += 1;
+//	   printf("l\n");
+	   switchTest();
 
 
    }

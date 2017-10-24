@@ -8,6 +8,10 @@
 #ifndef SOURCES_MAIN_H_
 #define SOURCES_MAIN_H_
 
+/*
+ * @name time struct
+ * @brief struct that keeps 3 ints containing an h/m/s.
+ */
 struct time {
 	int8_t hr;
 	int8_t min;
@@ -26,6 +30,15 @@ struct settingsScrData {
 	int8_t cursor;
 };
 
+typedef struct buttonState {
+	bool triggered;
+	int8_t direction;
+} _buttonState;
+
+struct buttonState;
+
+//static buttonState buttonState;
+
 enum song {
 	marchingIn = 0,
 	sandstorm
@@ -40,9 +53,6 @@ struct globalOpt {
  * 	@name screen enum
  * 	@brief enum for the different possible screens to draw.
  */
-
-
-
 enum screens {
 	timeScreen = 0,
 	alarmScreen,
@@ -51,10 +61,6 @@ enum screens {
 	settingsScreen
 };
 
-/*
- * @name time struct
- * @brief struct that keeps 3 ints containing an h/m/s.
- */
 
 
 int main();

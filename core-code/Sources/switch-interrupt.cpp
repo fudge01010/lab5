@@ -3,6 +3,7 @@
  */
 #include <stdio.h>
 #include "hardware.h"
+#include "main.h"
 #include "pit.h"
 #include "switch-interrupt.h"
 
@@ -57,10 +58,6 @@ static const char *getSwitchName(SwitchValue switchValue) {
  * It polls the switch and provides a debounced result in switchValue
  */
 void deBouncer() {
-   static int switchCounter = 0;
-   static int lastSwitch    = false;
-
-
    // Encode all switch values as a single binary number
    int currentSwitch =
       (EastSwitch::read()<<4)|
@@ -95,8 +92,12 @@ void deBouncer() {
 }
 
 
-void configure5wayInterrupt() {
+void configure5wayInterrupt(struct buttonState *buttonData) {
 	//do some stuff yo
+
+   struct buttonState &swState = *buttonData;
+//   *swState->triggered = false;
+	swState->triggered = true;
 
    EastSwitch::setInput(PinPull_Up, PinIrq_None, PinFilter_Passive);
    SouthSwitch::setInput(PinPull_Up, PinIrq_None, PinFilter_Passive);

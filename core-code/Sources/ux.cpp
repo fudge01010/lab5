@@ -55,7 +55,7 @@ void drawTimeScreen(time *currentTime) {
 
 //
 	char sec;
-	sprintf(sec, "%d", currentTime->sec);
+//	sprintf(sec, "%d", currentTime->sec);
 //	int minStr = sprintf (minString, "%d", min);
 //	int secStr = sprintf (secString, "%d", sec);
 
@@ -88,7 +88,7 @@ void drawTimeScreen(time *currentTime) {
     lcd.putStr(":", CENTRE_X+8, CENTRE_Y-8, largeFont, FOREGROUND_COLOUR, BACKGROUND_COLOUR);
 
     //TimeSeconds
-    lcd.putStr(sec, CENTRE_X+16, CENTRE_Y-8, largeFont, FOREGROUND_COLOUR, BACKGROUND_COLOUR);
+//    lcd.putStr(sec, CENTRE_X+16, CENTRE_Y-8, largeFont, FOREGROUND_COLOUR, BACKGROUND_COLOUR);
 }
 
 
