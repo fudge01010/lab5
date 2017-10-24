@@ -20,5 +20,4 @@
 
 void drawTimeScreen(struct time *currentTime);
 
-
 #endif /* SOURCES_UX_H_ */

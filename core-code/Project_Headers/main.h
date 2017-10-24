@@ -8,6 +8,12 @@
 #ifndef SOURCES_MAIN_H_
 #define SOURCES_MAIN_H_
 
+struct time {
+	int8_t hr;
+	int8_t min;
+	int8_t sec;
+};
+
 /*
  * 	@name screen enum
  * 	@brief enum for the different possible screens to draw.
@@ -25,12 +31,10 @@ enum screens {
  * @name time struct
  * @brief struct that keeps 3 ints containing an h/m/s.
  */
-struct time {
-	int8_t hr;
-	int8_t min;
-	int8_t sec;
-};
 
+
+int main();
+void drawScreen(enum screens currentScreen);
 
 
 #endif /* SOURCES_MAIN_H_ */

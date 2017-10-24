@@ -9,9 +9,9 @@
  */
 #include <stdio.h>
 #include "system.h"
+#include "main.h"
 #include "derivative.h"
 #include "hardware.h"
-#include "main.h"
 #include "ux.h"
 
 
@@ -40,8 +40,8 @@ int main() {
    return 0;
 }
 
-void drawScreen(enum screens &currentScreen) {
-	//
+void drawScreen(enum screens currentScreen) {
+	//enum screens &currentScreen
 	switch (currentScreen) {
 	//
 	case timeScreen :
