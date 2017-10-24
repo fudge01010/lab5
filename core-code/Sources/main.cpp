@@ -18,9 +18,11 @@
 // Allow access to USBDM methods without USBDM:: prefix
 using namespace USBDM;
 
+using Led   = USBDM::GpioA<2,USBDM::ActiveLow>;
+
 
 // static struct for the current time;
-static struct time currentTime;
+struct time currentTime;
 //struct containing the time of the alarm
 static struct time alarmTime;
 
@@ -32,16 +34,21 @@ int main() {
 	currentTime.min = 0;
 	currentTime.sec = 0;
    for(;;) {
-//	   asm("wfi");
-	   waitMS(1000);
-	   drawScreen((screens)0);
-	   currentTime.hr += 1;
+	      Led::toggle();
+//	      USBDM::waitMS(100);
+//		  asm("wfi");
+		  waitMS(1000);
+		  drawScreen((screens)0);
+		  currentTime.sec += 1;
+
+
    }
+   //never reach
    return 0;
 }
 
 void drawScreen(enum screens currentScreen) {
-	//enum screens &currentScreen
+//	enum screens &currentScreen
 	switch (currentScreen) {
 	//
 	case timeScreen :

@@ -53,6 +53,12 @@ static constexpr int FOREGROUND_COLOUR = (WHITE);
 void drawTimeScreen(time *currentTime) {
 //	0,0 bottom left with ribbon cable upwards
 
+//
+	char sec;
+	sprintf(sec, "%d", currentTime->sec);
+//	int minStr = sprintf (minString, "%d", min);
+//	int secStr = sprintf (secString, "%d", sec);
+
 
 //  lcd.putStr("Memes", 30, 10, largeFont, FOREGROUND_COLOUR, PINK);
 
@@ -82,7 +88,7 @@ void drawTimeScreen(time *currentTime) {
     lcd.putStr(":", CENTRE_X+8, CENTRE_Y-8, largeFont, FOREGROUND_COLOUR, BACKGROUND_COLOUR);
 
     //TimeSeconds
-    lcd.putStr("00", CENTRE_X+16, CENTRE_Y-8, largeFont, FOREGROUND_COLOUR, BACKGROUND_COLOUR);
+    lcd.putStr(sec, CENTRE_X+16, CENTRE_Y-8, largeFont, FOREGROUND_COLOUR, BACKGROUND_COLOUR);
 }
 
 
