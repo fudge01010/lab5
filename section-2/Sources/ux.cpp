@@ -50,12 +50,9 @@ static constexpr int FOREGROUND_COLOUR = (WHITE);
 
 
 //Draws cursor (is the sickest) on screen
-void drawTimeScreen(struct memes) {
+void drawTimeScreen(struct time currentTime) {
 //	0,0 bottom left with ribbon cable upwards
 
-	int hours;
-	int minutes;
-	int seconds;
 
 //  lcd.putStr("Memes", 30, 10, largeFont, FOREGROUND_COLOUR, PINK);
 
@@ -87,6 +84,8 @@ void drawTimeScreen(struct memes) {
     //TimeSeconds
     lcd.putStr("00", CENTRE_X+16, CENTRE_Y-8, largeFont, FOREGROUND_COLOUR, BACKGROUND_COLOUR);
 }
+
+
 
 int main() {
 	waitMS(500);
