@@ -1,0 +1,170 @@
+00000000 R __flash_start
+00000000 A __RAM_VECTOR_TABLE_SIZE_BYTES
+00000000 R __VECTOR_RAM
+00000000 R __vector_table
+000000f8 R __VECTOR_TABLE_END
+00000400 R securityInfo
+00000464 T _mainCRTStartup
+00000464 T _start
+00000540 T __HardReset
+00000540 T Reset_Handler
+00000584 W USBDM::Uart0Info::getInputClockFrequency()
+0000059c W USBDM::Uart0Info::initPCRs(unsigned long)
+000005e8 W USBDM::Uart::~Uart()
+000005e8 W USBDM::Uart::~Uart()
+00000610 W USBDM::Uart::~Uart()
+00000630 W USBDM::Uart::Uart(UART_Type volatile*)
+00000630 W USBDM::Uart::Uart(UART_Type volatile*)
+00000658 W USBDM::Uart::setBaudRate(unsigned long, unsigned long)
+000006f0 W USBDM::UartIrq_T<USBDM::Uart0Info>::~UartIrq_T()
+000006f0 W USBDM::UartIrq_T<USBDM::Uart0Info>::~UartIrq_T()
+00000720 W USBDM::UartIrq_T<USBDM::Uart0Info>::~UartIrq_T()
+00000740 W USBDM::Uart0::Uart0(unsigned int)
+00000740 W USBDM::Uart0::Uart0(unsigned int)
+00000768 T console_initialise
+0000077c W USBDM::UartIrq_T<USBDM::Uart0Info>::UartIrq_T(unsigned int)
+0000077c W USBDM::UartIrq_T<USBDM::Uart0Info>::UartIrq_T(unsigned int)
+000007a4 W USBDM::Uart_T<USBDM::Uart0Info>::~Uart_T()
+000007a4 W USBDM::Uart_T<USBDM::Uart0Info>::~Uart_T()
+000007d4 W USBDM::Uart_T<USBDM::Uart0Info>::~Uart_T()
+000007f4 W USBDM::Uart_T<USBDM::Uart0Info>::setBaudRate(unsigned int)
+00000818 W USBDM::Uart_T<USBDM::Uart0Info>::Uart_T(unsigned int)
+00000818 W USBDM::Uart_T<USBDM::Uart0Info>::Uart_T(unsigned int)
+00000864 W USBDM::Uart0::~Uart0()
+00000864 W USBDM::Uart0::~Uart0()
+00000894 W USBDM::Uart0::~Uart0()
+000008f4 W USBDM::Uart_T<USBDM::Uart0Info>::clearError()
+000009d4 W USBDM::Osc0Info::getInternalClock()
+000009e8 W USBDM::Osc0Info::initPCRs(unsigned long)
+00000a30 W USBDM::RtcInfo::getInternalClock()
+00000a58 W USBDM::RtcInfo::initPCRs(unsigned long)
+00000a6c W USBDM::McgInfo::getErcClock()
+00000a9c W USBDM::McgInfo::getInternalIrcClock()
+00000ae4 W USBDM::SimInfo::initRegs()
+00000b64 W USBDM::Mcg::setSysDividers(unsigned long)
+00000b88 W USBDM::Mcg::enableNvicInterrupts(bool)
+00000bc0 T USBDM::Mcg::clockTransition(USBDM::McgInfo::ClockInfo const&)
+00000e68 T USBDM::Mcg::SystemCoreClockUpdate()
+00001000 A __heap_size__
+00001000 A __stack_size__
+000010d4 T USBDM::Mcg::initialise()
+000010fc T clock_initialise
+00001110 W USBDM::Osc<USBDM::Osc0Info>::initialise()
+00001128 W USBDM::RtcBase_T<USBDM::RtcInfo>::initialise()
+000011cc W _exit
+000011d8 W __cxa_pure_virtual
+000011e4 W rtc_initialise
+000011f0 W software_init_hook
+000011fc T SystemInitLowLevel
+00001240 T SystemInit
+00001254 W ADC0_IRQHandler
+00001254 W BusFault_Handler
+00001254 W CMP0_IRQHandler
+00001254 W CMP1_IRQHandler
+00001254 W CMT_IRQHandler
+00001254 W DebugMon_Handler
+00001254 T Default_Handler
+00001254 W DMA_Error_IRQHandler
+00001254 W DMA0_IRQHandler
+00001254 W DMA1_IRQHandler
+00001254 W DMA2_IRQHandler
+00001254 W DMA3_IRQHandler
+00001254 W FTF_Command_IRQHandler
+00001254 W FTF_ReadCollision_IRQHandler
+00001254 W FTM0_IRQHandler
+00001254 W FTM1_IRQHandler
+00001254 W I2C0_IRQHandler
+00001254 W I2S0_Rx_IRQHandler
+00001254 W I2S0_Tx_IRQHandler
+00001254 W LLWU_IRQHandler
+00001254 W LPTMR0_IRQHandler
+00001254 W MCG_IRQHandler
+00001254 W MemManage_Handler
+00001254 W NMI_Handler
+00001254 W PDB0_IRQHandler
+00001254 W PendSV_Handler
+00001254 W PIT0_IRQHandler
+00001254 W PIT1_IRQHandler
+00001254 W PIT2_IRQHandler
+00001254 W PIT3_IRQHandler
+00001254 W PMC_IRQHandler
+00001254 W PORTA_IRQHandler
+00001254 W PORTB_IRQHandler
+00001254 W PORTC_IRQHandler
+00001254 W PORTD_IRQHandler
+00001254 W PORTE_IRQHandler
+00001254 W RTC_Alarm_IRQHandler
+00001254 W RTC_Seconds_IRQHandler
+00001254 W SPI0_IRQHandler
+00001254 W SVC_Handler
+00001254 W SWI_IRQHandler
+00001254 W SysTick_Handler
+00001254 W TSI0_IRQHandler
+00001254 W UART0_ERR_IRQHandler
+00001254 W UART0_LON_IRQHandler
+00001254 W UART0_RX_TX_IRQHandler
+00001254 W UART1_ERR_IRQHandler
+00001254 W UART1_RX_TX_IRQHandler
+00001254 W UART2_ERR_IRQHandler
+00001254 W UART2_RX_TX_IRQHandler
+00001254 W UsageFault_Handler
+00001254 W USB0_IRQHandler
+00001254 W USBDCD_IRQHandler
+00001254 W WDOG_IRQHandler
+00001274 W HardFault_Handler
+00001288 T _HardFault_Handler
+0000128c T main
+000012ac T operator delete(void*)
+000012b4 T __aeabi_atexit
+000012c0 T __cxa_atexit
+000012e0 T exit
+00001308 T __libc_init_array
+00001354 T free
+00001364 T memset
+00001374 T _free_r
+000013fc T initialise_monitor_handles
+00001498 V vtable for USBDM::Uart0
+000014b0 V vtable for USBDM::UartIrq_T<USBDM::Uart0Info>
+000014c8 V vtable for USBDM::Uart_T<USBDM::Uart0Info>
+000014e0 V vtable for USBDM::Uart
+000014f8 T USBDM::McgInfo::clockInfo
+00001548 T _global_impure_ptr
+0000154c T __sf_fake_stdin
+0000156c T __sf_fake_stdout
+0000158c T __sf_fake_stderr
+000015b0 T _init
+000015bc T _fini
+000015c8 T __CTOR_END__
+000015c8 T __CTOR_LIST__
+000015c8 T __DTOR_END__
+000015c8 T __DTOR_LIST__
+000015e8 R __etext
+1fffe000 D __DATA_RAM
+1fffe000 D __data_start__
+1fffe000 D __dso_handle
+1fffe000 D __VECTOR_RAM__
+1fffe000 D _mtb_end
+1fffe000 D _mtb_start
+1fffe00c D __stack_base__
+1fffe114 V SystemCoreClock
+1fffe118 V SystemBusClock
+1fffe17c D _impure_ptr
+1fffe180 B __bss_start__
+1fffe180 D __data_end__
+1fffe180 B __START_BSS
+1fffe19c B USBDM::console
+1fffe1a4 B USBDM::SystemMcgffClock
+1fffe1a8 B USBDM::SystemMcgOutClock
+1fffe1ac B USBDM::SystemMcgFllClock
+1fffe1b0 B USBDM::SystemMcgPllClock
+1fffe1b4 B USBDM::SystemCoreClock
+1fffe1b8 B USBDM::SystemBusClock
+1fffe1bc B USBDM::SystemLpoClock
+1fffe1c0 B USBDM::Mcg::currentClockMode
+1fffe1c8 B __malloc_free_list
+1fffe278 B __bss_end__
+1fffe278 B __end__
+1fffe278 B __END_BSS
+1fffe278 B __heap_addr
+20001000 B __StackLimit
+20002000 B __StackTop
