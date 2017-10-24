@@ -25,6 +25,10 @@ using Led   = USBDM::GpioA<2,USBDM::ActiveLow>;
 struct time currentTime;
 //struct containing the time of the alarm
 static struct time alarmTime;
+static struct timeSetData timeSetScreenData = 0;
+static struct alarmSetData alarmSetScreenData = 0;
+static struct settingsScrData settingsScreenData = 0;
+static struct globalOpt globalSettings;
 
 static enum screens currentScreen;
 
@@ -34,8 +38,8 @@ int main() {
 	currentTime.min = 0;
 	currentTime.sec = 0;
    for(;;) {
+	   	  //during debugging, this is our "heartbeat" LED"
 	      Led::toggle();
-//	      USBDM::waitMS(100);
 //		  asm("wfi");
 		  waitMS(1000);
 		  drawScreen((screens)0);
@@ -53,6 +57,18 @@ void drawScreen(enum screens currentScreen) {
 	//
 	case timeScreen :
 		drawTimeScreen(&currentTime);
+		break;
+	case alarmScreen :
+		drawAlarmScreen(&currentTime);
+		break;
+	case timeSetScreen :
+		drawTimeSetScreen(&currentTime, &timeSetScreenData);
+		break;
+	case alarmSetScreen :
+		drawAlarmSetScreen(&alarmTime, &alarmSetScreenData);
+		break;
+	case settingsScreen :
+		drawSettingsScreen(&settingsScreenData, &globalSettings);
 		break;
 	default:
 		break;

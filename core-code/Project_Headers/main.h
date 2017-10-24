@@ -14,6 +14,15 @@ struct time {
 	int8_t sec;
 };
 
+struct timeSetData {
+	int8_t cursor;
+};
+
+struct alarmSetData {
+	int8_t cursor;
+};
+
+
 /*
  * 	@name screen enum
  * 	@brief enum for the different possible screens to draw.
