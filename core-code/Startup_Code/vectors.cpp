@@ -15,6 +15,7 @@
 
 /*********** $start(VectorsIncludeFiles) *** Do not edit after this comment ****************/
 #include "pit.h"
+#include "rtc.h"
 /*********** $end(VectorsIncludeFiles)   *** Do not edit above this comment ***************/
 
 /*
@@ -156,7 +157,6 @@ void FTM0_IRQHandler(void)                    WEAK_DEFAULT_HANDLER;
 void FTM1_IRQHandler(void)                    WEAK_DEFAULT_HANDLER;
 void CMT_IRQHandler(void)                     WEAK_DEFAULT_HANDLER;
 void RTC_Alarm_IRQHandler(void)               WEAK_DEFAULT_HANDLER;
-void RTC_Seconds_IRQHandler(void)             WEAK_DEFAULT_HANDLER;
 void PIT0_IRQHandler(void)                    WEAK_DEFAULT_HANDLER;
 void PIT2_IRQHandler(void)                    WEAK_DEFAULT_HANDLER;
 void PIT3_IRQHandler(void)                    WEAK_DEFAULT_HANDLER;
@@ -231,7 +231,7 @@ VectorTable const __vector_table = {
       FTM1_IRQHandler,               /*   42,   26  FlexTimer Module                                                                 */
       CMT_IRQHandler,                /*   43,   27  Carrier Modulator Transmitter                                                    */
       RTC_Alarm_IRQHandler,          /*   44,   28  Real Time Clock                                                                  */
-      RTC_Seconds_IRQHandler,        /*   45,   29  Real Time Clock                                                                  */
+      USBDM::Rtc::irqSecondsHandler, /*   45,   29  Real Time Clock                                                                  */
       PIT0_IRQHandler,               /*   46,   30  Periodic Interrupt Timer                                                         */
       USBDM::Pit::irq1Handler,       /*   47,   31  Periodic Interrupt Timer                                                         */
       PIT2_IRQHandler,               /*   48,   32  Periodic Interrupt Timer                                                         */

@@ -231,9 +231,9 @@ public:
    //! Time for cold start (corrected for 12 leap years since 1970)
    static constexpr uint32_t coldStartTime = 
             ((((2017-1970)*365UL +
-               (181) +
-               (1+12-1))*24 +
-              (12))*60 +
+               (273) +
+               (25+12-1))*24 +
+              (0))*60 +
              (0))*60;
    /**
     * Get RTC clock frequency (internal, not masked by RTC_CR_CLKO)

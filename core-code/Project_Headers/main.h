@@ -12,7 +12,7 @@
  * @name time struct
  * @brief struct that keeps 3 ints containing an h/m/s.
  */
-struct time {
+struct timeData {
 	int8_t hr;
 	int8_t min;
 	int8_t sec;

@@ -239,7 +239,7 @@ const char* intToChar (int8_t time) {
 }
 
 //Draws cursor (is the sickest) on screen
-void drawTimeScreen(time currentTime) {
+void drawTimeScreen(timeData currentTime) {
 //	0,0 bottom left with ribbon cable upwards
 
 //	int8_t hr = currentTime->hr;
@@ -300,7 +300,7 @@ void drawSettingsScreen () {
 
 }
 
-void drawAlarmScreen (time currentTime) {
+void drawAlarmScreen (timeData currentTime) {
 //	0,0 bottom left with ribbon cable upwards
 
 //  lcd.putStr("Memes", 30, 10, largeFont, FOREGROUND_COLOUR, PINK);
@@ -320,19 +320,19 @@ void drawAlarmScreen (time currentTime) {
 
 
 	//TimeHours
-	lcd.putStr(currentTime.hr, CENTRE_X-32, CENTRE_Y-8, largeFont, FOREGROUND_COLOUR, BACKGROUND_COLOUR);
+	lcd.putStr(intToChar(currentTime.hr), CENTRE_X-32, CENTRE_Y-8, largeFont, FOREGROUND_COLOUR, BACKGROUND_COLOUR);
 
 	//DotDot
 	lcd.putStr(":", CENTRE_X-16, CENTRE_Y-8, largeFont, FOREGROUND_COLOUR, BACKGROUND_COLOUR);
 
 	//TimeMinutes
-	lcd.putStr(currentTime.min, CENTRE_X-8, CENTRE_Y-8, largeFont, FOREGROUND_COLOUR, BACKGROUND_COLOUR);
+	lcd.putStr(intToChar(currentTime.min), CENTRE_X-8, CENTRE_Y-8, largeFont, FOREGROUND_COLOUR, BACKGROUND_COLOUR);
 
 	//DotDot
 	lcd.putStr(":", CENTRE_X+8, CENTRE_Y-8, largeFont, FOREGROUND_COLOUR, BACKGROUND_COLOUR);
 
 	//TimeSeconds
-	lcd.putStr(currentTime.sec, CENTRE_X+16, CENTRE_Y-8, largeFont, FOREGROUND_COLOUR, BLUE);
+	lcd.putStr(intToChar(currentTime.sec), CENTRE_X+16, CENTRE_Y-8, largeFont, FOREGROUND_COLOUR, BLUE);
 }
 
 

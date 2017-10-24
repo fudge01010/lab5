@@ -97,7 +97,7 @@ void configure5wayInterrupt(struct buttonState *buttonData) {
 
    struct buttonState &swState = *buttonData;
 //   *swState->triggered = false;
-	swState->triggered = true;
+	buttonData->triggered = true;
 
    EastSwitch::setInput(PinPull_Up, PinIrq_None, PinFilter_Passive);
    SouthSwitch::setInput(PinPull_Up, PinIrq_None, PinFilter_Passive);

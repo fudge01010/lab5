@@ -13,6 +13,7 @@
 #include "derivative.h"
 #include "hardware.h"
 #include "ux.h"
+#include "rtc-code.h"
 #include "switch-interrupt.h"
 
 
@@ -23,9 +24,9 @@ using Led   = USBDM::GpioA<2,USBDM::ActiveLow>;
 
 
 // static struct for the current time;
-struct time currentTime;
+struct timeData currentTime;
 //struct containing the time of the alarm
-static struct time alarmTime;
+static struct timeData alarmTime;
 static struct timeSetData timeSetScreenData;
 static struct alarmSetData alarmSetScreenData;
 static struct settingsScrData settingsScreenData;
@@ -51,13 +52,14 @@ int main() {
 
    for(;;) {
 //	   	  //during debugging, this is our "heartbeat" LED"
-//	      Led::toggle();
+	      Led::toggle();
 ////		  asm("wfi");
-//		  waitMS(1000);
-//		  drawScreen((screens)0);
+		  waitMS(250);
+		  drawScreen((screens)0);
 //		  currentTime.sec += 1;
 //	   printf("l\n");
 	   switchTest();
+	   timeTest(&currentTime);
 
 
    }
@@ -70,7 +72,7 @@ void drawScreen(enum screens currentScreen) {
 	switch (currentScreen) {
 	//
 	case timeScreen :
-		drawTimeScreen(&currentTime);
+		drawTimeScreen(currentTime);
 		break;
 	case alarmScreen :
 //		drawAlarmScreen(&currentTime);

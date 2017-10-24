@@ -303,7 +303,7 @@
    <item key="/PIT/pit_tctrl_ch3"                          value="false" />
    <item key="/RTC/irqAlarmHandler"                        value="$NotInstalled" />
    <item key="/RTC/irqLevel"                               value="0" />
-   <item key="/RTC/irqSecondsHandler"                      value="$NotInstalled" />
+   <item key="/RTC/irqSecondsHandler"                      value="$ClassMethod" />
    <item key="/RTC/rtc_clkout"                             value="32768" />
    <item key="/RTC/rtc_cr_clko"                            value="true" />
    <item key="/RTC/rtc_cr_osce"                            value="true" />
@@ -311,15 +311,15 @@
    <item key="/RTC/rtc_cr_sup"                             value="false" />
    <item key="/RTC/rtc_cr_um"                              value="false" />
    <item key="/RTC/rtc_cr_wpe"                             value="false" />
-   <item key="/RTC/rtc_day"                                value="1" />
-   <item key="/RTC/rtc_hour"                               value="12" />
+   <item key="/RTC/rtc_day"                                value="25" />
+   <item key="/RTC/rtc_hour"                               value="0" />
    <item key="/RTC/rtc_input_freq"                         value="32768" />
    <item key="/RTC/rtc_lr_crl"                             value="true" />
    <item key="/RTC/rtc_lr_lrl"                             value="true" />
    <item key="/RTC/rtc_lr_srl"                             value="true" />
    <item key="/RTC/rtc_lr_tcl"                             value="true" />
    <item key="/RTC/rtc_minute"                             value="0" />
-   <item key="/RTC/rtc_month"                              value="181" />
+   <item key="/RTC/rtc_month"                              value="273" />
    <item key="/RTC/rtc_rar_crr"                            value="true" />
    <item key="/RTC/rtc_rar_ierr"                           value="true" />
    <item key="/RTC/rtc_rar_lrr"                            value="true" />
