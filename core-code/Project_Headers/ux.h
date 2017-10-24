@@ -18,6 +18,6 @@
 //	int8_t sec;
 //};
 
-void drawTimeScreen(struct time *currentTime);
+void drawTimeScreen(struct time currentTime);
 
 #endif /* SOURCES_UX_H_ */
