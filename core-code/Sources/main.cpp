@@ -32,7 +32,7 @@ int main() {
 	currentTime.min = 0;
 	currentTime.sec = 0;
    for(;;) {
-	   asm("wfi");
+//	   asm("wfi");
 	   waitMS(1000);
 	   drawScreen((screens)0);
 	   currentTime.hr += 1;
