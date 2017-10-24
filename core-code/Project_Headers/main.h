@@ -22,11 +22,26 @@ struct alarmSetData {
 	int8_t cursor;
 };
 
+struct settingsScrData {
+	int8_t cursor;
+};
+
+enum song {
+	marchingIn = 0,
+	sandstorm
+};
+
+struct globalOpt {
+	enum song song;
+};
+
 
 /*
  * 	@name screen enum
  * 	@brief enum for the different possible screens to draw.
  */
+
+
 
 enum screens {
 	timeScreen = 0,

@@ -25,9 +25,9 @@ using Led   = USBDM::GpioA<2,USBDM::ActiveLow>;
 struct time currentTime;
 //struct containing the time of the alarm
 static struct time alarmTime;
-static struct timeSetData timeSetScreenData = 0;
-static struct alarmSetData alarmSetScreenData = 0;
-static struct settingsScrData settingsScreenData = 0;
+static struct timeSetData timeSetScreenData;
+static struct alarmSetData alarmSetScreenData;
+static struct settingsScrData settingsScreenData;
 static struct globalOpt globalSettings;
 
 static enum screens currentScreen;
@@ -59,16 +59,16 @@ void drawScreen(enum screens currentScreen) {
 		drawTimeScreen(&currentTime);
 		break;
 	case alarmScreen :
-		drawAlarmScreen(&currentTime);
+//		drawAlarmScreen(&currentTime);
 		break;
 	case timeSetScreen :
-		drawTimeSetScreen(&currentTime, &timeSetScreenData);
+//		drawTimeSetScreen(&currentTime, &timeSetScreenData);
 		break;
 	case alarmSetScreen :
-		drawAlarmSetScreen(&alarmTime, &alarmSetScreenData);
+//		drawAlarmSetScreen(&alarmTime, &alarmSetScreenData);
 		break;
 	case settingsScreen :
-		drawSettingsScreen(&settingsScreenData, &globalSettings);
+//		drawSettingsScreen(&settingsScreenData, &globalSettings);
 		break;
 	default:
 		break;
