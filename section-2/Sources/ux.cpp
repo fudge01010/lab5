@@ -48,7 +48,6 @@ static constexpr int BACKGROUND_COLOUR = (BLACK);
 // Colour for LCD foreground
 static constexpr int FOREGROUND_COLOUR = (WHITE);
 
-
 //Draws cursor (is the sickest) on screen
 void drawTimeScreen(struct time currentTime) {
 //	0,0 bottom left with ribbon cable upwards
@@ -85,18 +84,82 @@ void drawTimeScreen(struct time currentTime) {
     lcd.putStr("00", CENTRE_X+16, CENTRE_Y-8, largeFont, FOREGROUND_COLOUR, BACKGROUND_COLOUR);
 }
 
+void drawMenu () {
+
+		//Bottom
+		lcd.drawLine(CENTRE_X-60, CENTRE_Y-60, CENTRE_X+60, CENTRE_Y-60, WHITE);
+		//Left
+		lcd.drawLine(CENTRE_X-60, CENTRE_Y-60, CENTRE_X-60, CENTRE_Y+60, WHITE);
+		//Top
+		lcd.drawLine(CENTRE_X-60, CENTRE_Y+60, CENTRE_X+60, CENTRE_Y+60, WHITE);
+		//Right
+		lcd.drawLine(CENTRE_X+60, CENTRE_Y+60, CENTRE_X+60, CENTRE_Y-60, WHITE);
+
+//		enum menu {
+//			live, alarm, stop, banger
+//		};
+
+		lcd.putStr("Live Time", CENTRE_X-36, CENTRE_Y+35, largeFont, FOREGROUND_COLOUR, BACKGROUND_COLOUR);
+
+		lcd.putStr("Alarm Clock", CENTRE_X-44, CENTRE_Y+16, largeFont, FOREGROUND_COLOUR, BACKGROUND_COLOUR);
+
+		lcd.putStr("Stop Watch", CENTRE_X-36, CENTRE_Y-4, largeFont, FOREGROUND_COLOUR, BACKGROUND_COLOUR);
+
+		lcd.putStr("Bangers", CENTRE_X-28, CENTRE_Y-24, largeFont, FOREGROUND_COLOUR, BACKGROUND_COLOUR);
 
 
-int main() {
-	waitMS(500);
 
-   for(;;) {
-	   drawTimeSreen();
-	   waitMS(50);
 
-   }
-   return 0;
 }
+
+void drawAlarm () {
+	//	0,0 bottom left with ribbon cable upwards
+
+
+	//  lcd.putStr("Memes", 30, 10, largeFont, FOREGROUND_COLOUR, PINK);
+
+		//Centre Position
+	//	lcd.drawLine(CENTRE_X+100, CENTRE_Y, CENTRE_X-100, CENTRE_Y, RED);
+	//	lcd.drawLine(CENTRE_X, CENTRE_Y+100, CENTRE_X, CENTRE_Y-100, RED);
+
+		//Bottom
+		lcd.drawLine(CENTRE_X-50, CENTRE_Y-30, CENTRE_X+50, CENTRE_Y-30, WHITE);
+		//Left
+		lcd.drawLine(CENTRE_X-50, CENTRE_Y-30, CENTRE_X-50, CENTRE_Y+30, WHITE);
+		//Top
+		lcd.drawLine(CENTRE_X-50, CENTRE_Y+30, CENTRE_X+50, CENTRE_Y+30, WHITE);
+		//Right
+		lcd.drawLine(CENTRE_X+50, CENTRE_Y+30, CENTRE_X+50, CENTRE_Y-30, WHITE);
+
+
+		//TimeHours
+	    lcd.putStr("00", CENTRE_X-32, CENTRE_Y-8, largeFont, FOREGROUND_COLOUR, BACKGROUND_COLOUR);
+
+	    //DotDot
+	    lcd.putStr(":", CENTRE_X-16, CENTRE_Y-8, largeFont, FOREGROUND_COLOUR, BACKGROUND_COLOUR);
+
+	    //TimeMinutes
+	    lcd.putStr("00", CENTRE_X-8, CENTRE_Y-8, largeFont, FOREGROUND_COLOUR, BACKGROUND_COLOUR);
+
+	    //DotDot
+	    lcd.putStr(":", CENTRE_X+8, CENTRE_Y-8, largeFont, FOREGROUND_COLOUR, BACKGROUND_COLOUR);
+
+	    //TimeSeconds
+	    lcd.putStr("00", CENTRE_X+16, CENTRE_Y-8, largeFont, FOREGROUND_COLOUR, BLUE);
+}
+
+//int main() {
+//	waitMS(500);
+//
+//   for(;;) {
+////	   drawTimeSreen();
+//	   drawMenu();
+////	   drawAlarm();
+//	   waitMS(50);
+//
+//   }
+//   return 0;
+//}
 
 
 
