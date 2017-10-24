@@ -16,6 +16,7 @@
 #include "delay.h"
 #include "hardware.h"
 #include "i2c.h"
+#include "ux.h"
 
 // Allow access to USBDM methods without USBDM:: prefix
 using namespace USBDM;
@@ -49,8 +50,18 @@ static constexpr int FOREGROUND_COLOUR = (WHITE);
 
 
 //Draws cursor (is the sickest) on screen
-void drawClock(int x, int y, int colour) {
-	//0,0 bottom left with ribbon cable upwards
+void drawTimeScreen(struct memes) {
+//	0,0 bottom left with ribbon cable upwards
+
+	int hours;
+	int minutes;
+	int seconds;
+
+//  lcd.putStr("Memes", 30, 10, largeFont, FOREGROUND_COLOUR, PINK);
+
+	//Centre Position
+//	lcd.drawLine(CENTRE_X+100, CENTRE_Y, CENTRE_X-100, CENTRE_Y, RED);
+//	lcd.drawLine(CENTRE_X, CENTRE_Y+100, CENTRE_X, CENTRE_Y-100, RED);
 
 	//Bottom
 	lcd.drawLine(CENTRE_X-50, CENTRE_Y-30, CENTRE_X+50, CENTRE_Y-30, WHITE);
@@ -62,22 +73,26 @@ void drawClock(int x, int y, int colour) {
 	lcd.drawLine(CENTRE_X+50, CENTRE_Y+30, CENTRE_X+50, CENTRE_Y-30, WHITE);
 
 	//TimeHours
-    lcd.putStr("Memes", 30, 10, largeFont, FOREGROUND_COLOUR, PINK);
-    lcd.putStr("1", CENTRE_X-45, CENTRE_Y, largeFont, FOREGROUND_COLOUR, BLUE);
+    lcd.putStr("12", CENTRE_X-32, CENTRE_Y-8, largeFont, FOREGROUND_COLOUR, BACKGROUND_COLOUR);
 
     //DotDot
-    lcd.putStr(":", CENTRE_X, CENTRE_Y, largeFont, FOREGROUND_COLOUR, BLUE )
+    lcd.putStr(":", CENTRE_X-16, CENTRE_Y-8, largeFont, FOREGROUND_COLOUR, BACKGROUND_COLOUR);
 
     //TimeMinutes
-    lcd.putStr("1", CENTRE_X+10, CENTRE_Y, largeFont, FOREGROUND_COLOUR, BLUE);
+    lcd.putStr("00", CENTRE_X-8, CENTRE_Y-8, largeFont, FOREGROUND_COLOUR, BACKGROUND_COLOUR);
 
+    //DotDot
+    lcd.putStr(":", CENTRE_X+8, CENTRE_Y-8, largeFont, FOREGROUND_COLOUR, BACKGROUND_COLOUR);
+
+    //TimeSeconds
+    lcd.putStr("00", CENTRE_X+16, CENTRE_Y-8, largeFont, FOREGROUND_COLOUR, BACKGROUND_COLOUR);
 }
 
 int main() {
 	waitMS(500);
 
    for(;;) {
-	   drawClock(100, 100, FOREGROUND_COLOUR);
+	   drawTimeSreen();
 	   waitMS(50);
 
    }
