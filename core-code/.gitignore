@@ -1,2 +1,6 @@
 /Debug/
 /Release/
+/Project_Headers/.gitignore
+/Snippets/.gitignore
+/Sources/.gitignore
+/Startup_Code/.gitignore
