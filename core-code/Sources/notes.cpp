@@ -10,6 +10,7 @@
 #include "hardware.h"
 #include <stdint.h>
 #include "notes.h"
+#include "pit.h"
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////
@@ -30,7 +31,10 @@ using TimerChannel = Ftm1Channel<1>;
 using TimerChannelNote = Ftm0Channel<1>;
 using spkGnd = GpioA<5, ActiveLow>;
 
-static noteInfo saints[37];
+static volatile noteInfo saints[37];
+static bool playingTrack = false;
+static int duration = 0;
+static bool nextNote = false;
 
 static void ftmCallback(uint8_t status) {
 
@@ -42,19 +46,13 @@ static void ftmCallback(uint8_t status) {
    }
 }
 
-static void ftmCallbackNote(uint8_t status) {
-    printf("callback\n");
-
-//   // Check channel
-   if (status & TimerChannelNote::CHANNEL_MASK) {
-//      // Note: The pin is toggled directly by hardware
-//      // Re-trigger at last interrupt time + timerHalfPeriodInTicks
-      TimerChannel::setDeltaEventTime(250);
-//      for (int i = 0; i <)
-   }
+void ftmCallbackNote() {
+	printf("callback\n");
+	nextNote = true;
 }
 
 void setupSpeakerInterrupts() {
+	noteIndex = 0;
 	spkGnd::setOutput(PinDriveStrength_High, PinDriveMode_OpenDrain, PinSlewRate_Fast);
 
 	Timer::configure(
@@ -87,37 +85,79 @@ void setupSpeakerInterrupts() {
 	TimerChannel::configure(
 		 FtmChMode_OutputCompareToggle, //  Output Compare with pin toggle
 		 FtmChannelIrq_Enable);         //  + interrupts on events
+
+
+
+
 /////////////////////////////////////////////////////////////////////////////////
 
+	Pit::configure();
 
-	TimerNote::configure(
-		 FtmMode_LeftAlign,      // Left-aligned is required for OC/IC
-		 FtmClockSource_System,  // Bus clock usually
-		 FtmPrescale_1);         // The prescaler will be re-calculated later
+//   Pit::setCallback(1, deBouncer);
+   Pit::setCallback(2, ftmCallbackNote);
 
-	// Set IC/OC measurement period to accommodate maximum period + 10%
-	// This adjusts the prescaler value but does not change the clock source
-	TimerNote::setMeasurementPeriod(1.0);
+   Pit::configureChannelInTicks(2, ::SystemBusClock/4);
 
-	halfPeriodNote = TimerNote::convertSecondsToTicks(WAVEFORM_PERIOD/2.0);
-	printf("%d\n", halfPeriodNote);
+   // Setup debouncer to execute every 5 ms (200 Hz)
+//   Pit::configureChannelInTicks(1, ::SystemBusClock/PIT_FREQUENCY);
 
+   // Enable interrupts on the channel
+   Pit::enableInterrupts(2);
 
-	// Set callback function
-	TimerNote::setChannelCallback(ftmCallbackNote);
+//   Pit::enableNvicInterrupts();
 
-	// Enable interrupts for entire timer
-	TimerNote::enableNvicInterrupts();
+   // Check for errors so far
+   checkError();
 
-	printf("test3\n");
-	// Trigger 1st interrupt at now+100
-	TimerChannelNote::setRelativeEventTime(100);
-	printf("test4\n");
+//	TimerNote::configure(
+//		 FtmMode_LeftAlign,      // Left-aligned is required for OC/IC
+//		 FtmClockSource_System,  // Bus clock usually
+//		 FtmPrescale_1);         // The prescaler will be re-calculated later
+//
+//	// Set IC/OC measurement period to accommodate maximum period + 10%
+//	// This adjusts the prescaler value but does not change the clock source
+//	TimerNote::setMeasurementPeriod(1);
+//
+//	halfPeriodNote = TimerNote::convertSecondsToTicks(0.2);
+//	printf("%d\n", halfPeriodNote);
+//
+//
+//	// Set callback function
+//	TimerNote::setChannelCallback(ftmCallbackNote);
+//
+//	// Enable interrupts for entire timer
+//	TimerNote::enableNvicInterrupts();
+//
+//	printf("test3\n");
+//	// Trigger 1st interrupt at now+100
+//	TimerChannelNote::setRelativeEventTime(halfPeriodNote);
+//	printf("test4\n");
+
 
 }
 
-void stopAlarm () {
+void musicHandler() {
+	if (nextNote) {
+		if (playingTrack)
+		{
+			if (duration == 0)
+			{
+				//no duration left or we've just started. get next note:
+				setNoteFreq((uint16_t)saints[noteIndex].note);
+				printf("%i\n", (uint16_t)noteIndex);
+				printf("set freq as %d\n", saints[noteIndex].note);
+				duration = saints[noteIndex].duration-1;
+				noteIndex++;
+			} else if (duration > 0) {
+				duration--;
+			}
+		}
+		nextNote = false;
+	}
+}
 
+void stopAlarm () {
+	playingTrack = false;
 }
 
 void setNoteFreq(uint16_t noteFreq) {
@@ -125,13 +165,7 @@ void setNoteFreq(uint16_t noteFreq) {
 }
 
 void startAlarm () {
-	for (int i; i <= sizeof(saints); i++) {
-		//Play song
-		printf("%d/n", sizeof(saints));
-		 waitMS(500);
-
-		setNoteFreq(saints[i].note);
-	}
+	playingTrack = true;
 }
 
 
@@ -148,7 +182,7 @@ void loadSongSaints () {
 
 	saints[2].octave = o6;
 	saints[2].note = f;
-	saints[2].duration = 2;
+	saints[2].duration = 1;
 
 	saints[3].octave = o6;
 	saints[3].note = g;
@@ -210,7 +244,7 @@ void loadSongSaints () {
 	saints[16].duration = 2;
 
 	saints[17].octave = o6;
-	saints[17].note = d;
+	saints[17].note = cs;
 	saints[17].duration = 4;
 
 	//Fifth line 6

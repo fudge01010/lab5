@@ -294,7 +294,7 @@
    <item key="/PDB0/pdb_sc_trgsel"                         value="0" />
    <item key="/PIT/irqHandlerChannel0"                     value="$NotInstalled" />
    <item key="/PIT/irqHandlerChannel1"                     value="$ClassMethod" />
-   <item key="/PIT/irqHandlerChannel2"                     value="$NotInstalled" />
+   <item key="/PIT/irqHandlerChannel2"                     value="$ClassMethod" />
    <item key="/PIT/irqHandlerChannel3"                     value="$NotInstalled" />
    <item key="/PIT/irqLevel"                               value="0" />
    <item key="/PIT/pit_ldval"                              value="10000" />

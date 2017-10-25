@@ -32,7 +32,7 @@ enum e_note {
 	a = 14880, //1760,
 	as = 13620, //1865,
 	b = 12288, //1976,
-	stop
+	stop = 1000
 };
 
 typedef struct s_noteInfo {
@@ -41,6 +41,7 @@ typedef struct s_noteInfo {
 	int8_t duration;
 }noteInfo;
 
+static int noteIndex;
 
 /*
  * Sets up the FTM module for our note playing
@@ -49,7 +50,9 @@ void setupSpeakerInterrupts();
 
 void disableTest();
 void startAlarm ();
-
+void stopAlarm ();
+void loadSongSaints ();
+void musicHandler();
 /*
  *  Takes an integer and adjusts the timer's frequency.
  *

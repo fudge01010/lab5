@@ -116,7 +116,7 @@ void configure5wayInterrupt(buttonState *swState) {
    NorthSwitch::setInput(PinPull_Up, PinIrq_None, PinFilter_Passive);
 
    // Do default configure
-   Pit::configure();
+//   Pit::configure();
 
    // Set handler for channel 1 programmatically
    Pit::setCallback(1, deBouncer);

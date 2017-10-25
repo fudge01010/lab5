@@ -41,9 +41,10 @@ static bool almIntTriggered = false;
 
 int main() {
 	setupSpeakerInterrupts();
-//	setNoteFreq(48000);
-	startAlarm();
+	setNoteFreq(1000);
+//	startAlarm();
 	setupDataObjects();
+	stopAlarm();
 	configRTC();
 	printf("test\n");
 	configure5wayInterrupt(&buttonData);
@@ -67,11 +68,13 @@ int main() {
 	   {
 		   currentScreen = alarmScreen;
 		   printf("shit tyrone\n");
-		   //startAlarm();
+		   startAlarm();
 	   }
 	   getTime(&currentTime);
 	   waitMS(50);
+	   musicHandler();
 	   drawScreen(currentScreen);
+//	   printf("looped\n");
 //	   printf("%d\n", currentScreen);
 
    }
@@ -86,6 +89,7 @@ void actionOnSwitch() {
 		//we only care about centre clicks on the time screen, to go to settings.
 		if (buttonData.direction == centreSwitch) {
 			currentScreen = settingsScreen;
+//			startAlarm();		for debugging
 		}
 		break;
 	case alarmScreen:
@@ -182,7 +186,7 @@ void actionOnSwitch() {
 				break;
 			case 2:
 				//current screen = alarm tone set screen;
-				currentScreen = alarmScreen;
+//				currentScreen = alarmScreen;
 				break;
 			case 3:
 				currentScreen = timeScreen;
@@ -204,6 +208,8 @@ void setupDataObjects() {
 	buttonData.triggered = false;
 	buttonData.direction = noSwitch;
 
+	//load the song
+	loadSongSaints();
 //	timeSetScreenData.cursor = 2;
 
 	//start at clock screen
