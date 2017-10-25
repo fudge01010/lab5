@@ -25,7 +25,7 @@ using Led   = USBDM::GpioA<2,USBDM::ActiveLow>;
 
 // static struct for the current time;
 struct timeData currentTime;
-//struct containing the time of the alarm
+////struct containing the time of the alarm
 static struct timeData alarmTime;
 static struct timeSetData timeSetScreenData;
 static struct alarmSetData alarmSetScreenData;
@@ -168,6 +168,7 @@ void actionOnSwitch() {
 		if (buttonData.direction == centreSwitch) {
 			//set the alarm time based on the current programmed time.
 			//setAlarm(alarmSetScreenData.time2set);
+			currentScreen = timeScreen;
 		}
 		break;
 	case settingsScreen:
@@ -231,7 +232,7 @@ void drawScreen(enum screens currentScreen) {
 		drawTimeSetScreen(&currentTime, timeSetScreenData);
 		break;
 	case alarmSetScreen :
-//		drawAlarmSetScreen(&alarmTime, &alarmSetScreenData);
+		drawAlarmSetScreen(alarmSetScreenData);
 		break;
 	case settingsScreen :
 		drawSettingsScreen(settingsScreenData, globalSettings);

@@ -291,9 +291,15 @@ void drawSettingsScreen (struct settingsScrData settingsData, struct globalOpt g
 	//Right
 	lcd.drawLine(CENTRE_X+60, CENTRE_Y+60, CENTRE_X+60, CENTRE_Y-60, WHITE);
 
-	lcd.putStr("Set Time", CENTRE_X-36, CENTRE_Y+35, largeFont, FOREGROUND_COLOUR, BACKGROUND_COLOUR);
+	if (settingsData.cursor == 0)
+		lcd.putStr("Set Time", CENTRE_X-36, CENTRE_Y+35, largeFont, FOREGROUND_COLOUR, BLUE);
+	else
+		lcd.putStr("Set Time", CENTRE_X-36, CENTRE_Y+35, largeFont, FOREGROUND_COLOUR, BACKGROUND_COLOUR);
 
-	lcd.putStr("Set Alarm Time", CENTRE_X-44, CENTRE_Y+16, largeFont, FOREGROUND_COLOUR, BACKGROUND_COLOUR);
+	if (settingsData.cursor == 1)
+		lcd.putStr("Set Alarm Time", CENTRE_X-44, CENTRE_Y+16, largeFont, FOREGROUND_COLOUR, BLUE);
+	else
+		lcd.putStr("Set Alarm Time", CENTRE_X-44, CENTRE_Y+16, largeFont, FOREGROUND_COLOUR, BACKGROUND_COLOUR);
 
 	lcd.putStr("Set alarm tone", CENTRE_X-36, CENTRE_Y-4, largeFont, FOREGROUND_COLOUR, BACKGROUND_COLOUR);
 
@@ -304,7 +310,7 @@ void drawSettingsScreen (struct settingsScrData settingsData, struct globalOpt g
 
 }
 
-void drawAlarmScreen (timeData currentTime) {
+void drawAlarmSetScreen (alarmSetData alarmScrSettings) {
 //	0,0 bottom left with ribbon cable upwards
 
 //  lcd.putStr("Memes", 30, 10, largeFont, FOREGROUND_COLOUR, PINK);
@@ -324,19 +330,33 @@ void drawAlarmScreen (timeData currentTime) {
 
 
 	//TimeHours
-	lcd.putStr(intToChar(currentTime.hr), CENTRE_X-32, CENTRE_Y-8, largeFont, FOREGROUND_COLOUR, BACKGROUND_COLOUR);
+	if (alarmScrSettings.cursor == 0) {
+		lcd.putStr(intToChar(alarmScrSettings.time2set.hr), CENTRE_X-32, CENTRE_Y-8, largeFont, FOREGROUND_COLOUR, BLUE);
+	} else {
+		lcd.putStr(intToChar(alarmScrSettings.time2set.hr), CENTRE_X-32, CENTRE_Y-8, largeFont, FOREGROUND_COLOUR, BACKGROUND_COLOUR);
+	}
+
 
 	//DotDot
 	lcd.putStr(":", CENTRE_X-16, CENTRE_Y-8, largeFont, FOREGROUND_COLOUR, BACKGROUND_COLOUR);
 
 	//TimeMinutes
-	lcd.putStr(intToChar(currentTime.min), CENTRE_X-8, CENTRE_Y-8, largeFont, FOREGROUND_COLOUR, BACKGROUND_COLOUR);
+	if (alarmScrSettings.cursor == 1) {
+		lcd.putStr(intToChar(alarmScrSettings.time2set.min), CENTRE_X-8, CENTRE_Y-8, largeFont, FOREGROUND_COLOUR, BLUE);
+	} else {
+		lcd.putStr(intToChar(alarmScrSettings.time2set.min), CENTRE_X-8, CENTRE_Y-8, largeFont, FOREGROUND_COLOUR, BACKGROUND_COLOUR);
+	}
+
 
 	//DotDot
 	lcd.putStr(":", CENTRE_X+8, CENTRE_Y-8, largeFont, FOREGROUND_COLOUR, BACKGROUND_COLOUR);
 
 	//TimeSeconds
-	lcd.putStr(intToChar(currentTime.sec), CENTRE_X+16, CENTRE_Y-8, largeFont, FOREGROUND_COLOUR, BLUE);
+	if (alarmScrSettings.cursor == 2) {
+		lcd.putStr(intToChar(alarmScrSettings.time2set.sec), CENTRE_X+16, CENTRE_Y-8, largeFont, FOREGROUND_COLOUR, BLUE);
+	} else {
+		lcd.putStr(intToChar(alarmScrSettings.time2set.sec), CENTRE_X+16, CENTRE_Y-8, largeFont, FOREGROUND_COLOUR, BACKGROUND_COLOUR);
+	}
 }
 
 void drawTimeSetScreen(struct timeData *currentTime, struct timeSetData setData) {
