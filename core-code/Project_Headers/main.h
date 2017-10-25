@@ -34,10 +34,12 @@ enum SwitchValue {
 
 struct timeSetData {
 	int8_t cursor;
+	struct timeData time2set;
 };
 
 struct alarmSetData {
 	int8_t cursor;
+	struct timeData time2set;
 };
 
 struct settingsScrData {

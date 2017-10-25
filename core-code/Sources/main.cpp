@@ -84,28 +84,84 @@ void actionOnSwitch() {
 	//switch what happens depending on what screen we're on
 	switch (currentScreen) {
 	case timeScreen:
-		//we only care about centre clicks on the time screen
-		if (buttonData.direction == 1) {
+		//we only care about centre clicks on the time screen, to go to settings.
+		if (buttonData.direction == centreSwitch) {
 			currentScreen = settingsScreen;
 		}
 		break;
 	case alarmScreen:
 		//if we're alarming, any button press should go back to the time
-		if (buttonData.direction != 0) {
+		if (buttonData.direction != noSwitch) {
 			currentScreen = timeScreen;
 		}
 		break;
 	case timeSetScreen:
-		//if we're setting the time, move the cursor or inc time.
-		if (timeSetScreenData.cursor < 2 && buttonData.direction == 3)
+		//if we're setting the time, move the cursor or inc/dec time.
+		if (timeSetScreenData.cursor < 2 && buttonData.direction == eastSwitch)
 		{
 			timeSetScreenData.cursor++;
-		} else if (timeSetScreenData.cursor > 0 && buttonData.direction == 0) {
-			//
+		} else if (timeSetScreenData.cursor > 0 && buttonData.direction == westSwitch) {
+			timeSetScreenData.cursor--;
+		}
+		if (buttonData.direction == northSwitch)
+		{
+			//switch is up. increment time
+			if (timeSetScreenData.cursor == 0 && timeSetScreenData.time2set.hr < 23) {
+				timeSetScreenData.time2set.hr ++;
+			} else if (timeSetScreenData.cursor == 1 && timeSetScreenData.time2set.min < 59) {
+				timeSetScreenData.time2set.min++;
+			} else if (timeSetScreenData.cursor == 2 && timeSetScreenData.time2set.sec < 59) {
+				timeSetScreenData.time2set.sec++;
+			}
+		} else if (buttonData.direction == southSwitch)
+		{
+			//switch is down. decrement time.
+			if (timeSetScreenData.cursor == 0 && timeSetScreenData.time2set.hr > 0) {
+				timeSetScreenData.time2set.hr--;
+			} else if (timeSetScreenData.cursor == 1 && timeSetScreenData.time2set.min > 0) {
+				timeSetScreenData.time2set.min--;
+			} else if (timeSetScreenData.cursor == 2 && timeSetScreenData.time2set.sec > 0) {
+				timeSetScreenData.time2set.sec--;
+			}
+		}
+		if (buttonData.direction == centreSwitch) {
+			//set the time based on the current programmed time.
+			//setTime(timeSetScreenData.time2set);
 		}
 		break;
 	case alarmSetScreen:
-		//
+		//if we're setting the time, move the cursor or inc/dec time.
+		if (alarmSetScreenData.cursor < 2 && buttonData.direction == eastSwitch)
+		{
+			alarmSetScreenData.cursor++;
+		} else if (alarmSetScreenData.cursor > 0 && buttonData.direction == westSwitch) {
+			alarmSetScreenData.cursor--;
+		}
+		if (buttonData.direction == northSwitch)
+		{
+			//switch is up. increment time
+			if (alarmSetScreenData.cursor == 0 && alarmSetScreenData.time2set.hr < 23) {
+				alarmSetScreenData.time2set.hr ++;
+			} else if (alarmSetScreenData.cursor == 1 && alarmSetScreenData.time2set.min < 59) {
+				alarmSetScreenData.time2set.min++;
+			} else if (alarmSetScreenData.cursor == 2 && alarmSetScreenData.time2set.sec < 59) {
+				alarmSetScreenData.time2set.sec++;
+			}
+		} else if (buttonData.direction == southSwitch)
+		{
+			//switch is down. decrement time.
+			if (alarmSetScreenData.cursor == 0 && alarmSetScreenData.time2set.hr > 0) {
+				alarmSetScreenData.time2set.hr--;
+			} else if (alarmSetScreenData.cursor == 1 && alarmSetScreenData.time2set.min > 0) {
+				alarmSetScreenData.time2set.min--;
+			} else if (alarmSetScreenData.cursor == 2 && alarmSetScreenData.time2set.sec > 0) {
+				alarmSetScreenData.time2set.sec--;
+			}
+		}
+		if (buttonData.direction == centreSwitch) {
+			//set the alarm time based on the current programmed time.
+			//setAlarm(alarmSetScreenData.time2set);
+		}
 		break;
 	case settingsScreen:
 		//
