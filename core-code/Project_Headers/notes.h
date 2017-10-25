@@ -1,14 +1,12 @@
 /*
  * notes.h
  *
- *  Created on: 25 Oct 2017
+ *  Created on: 26 Oct 2017
  *      Author: Kain
  */
 
-#ifndef SOURCES_NOTES_H_
-#define SOURCES_NOTES_H_
-#include <stdint.h>
-
+#ifndef PROJECT_HEADERS_NOTES_H_
+#define PROJECT_HEADERS_NOTES_H_
 
 enum e_octave {
 	o1 = 1,
@@ -37,18 +35,17 @@ enum e_note {
 	stop
 };
 
-struct noteInfo {
+typedef struct s_noteInfo {
 	e_octave octave;
 	e_note note;
 	int8_t duration;
-};
+}noteInfo;
 
-struct noteInfo saints[37];
 
 /*
  * Sets up the FTM module for our note playing
  */
-void initNotes();
+void setupSpeakerInterrupts();
 
 
 /*
@@ -58,5 +55,4 @@ void initNotes();
  */
 void setNoteFreq(uint16_t freq);
 
-
-#endif /* SOURCES_NOTES_H_ */
+#endif /* PROJECT_HEADERS_NOTES_H_ */

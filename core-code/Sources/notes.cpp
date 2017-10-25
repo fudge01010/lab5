@@ -5,12 +5,13 @@
  *      Author: Kain
  */
 
-#include "notes.h"
+
 #include <stdio.h>
 #include "system.h"
 #include "derivative.h"
 #include "hardware.h"
 #include <stdint.h>
+#include "notes.h"
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////
@@ -27,6 +28,8 @@ using Timer = Ftm1;
 using TimerChannel = Ftm1Channel<1>;
 using spkGnd = GpioA<5, ActiveLow>;
 
+static noteInfo saints[37];
+
 static void ftmCallback(uint8_t status) {
 
    // Check channel
@@ -37,7 +40,7 @@ static void ftmCallback(uint8_t status) {
    }
 }
 
-void initNotes() {
+void setupSpeakerInterrupts() {
 	spkGnd::setOutput(PinDriveStrength_High, PinDriveMode_OpenDrain, PinSlewRate_Fast);
 
 	Timer::configure(
@@ -91,6 +94,7 @@ void setNoteFreq(uint16_t noteFreq) {
 
 void loadSongSaints () {
 	//First line 4
+//	saints = noteInfo saints[37];
 	saints[0].octave = o6;
 	saints[0].note = c;
 	saints[0].duration = 1;

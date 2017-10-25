@@ -15,7 +15,7 @@
 #include "ux.h"
 #include "rtc-code.h"
 #include "switch-interrupt.h"
-#include "bmp.h"
+#include "notes.h"
 
 
 // Allow access to USBDM methods without USBDM:: prefix
@@ -40,6 +40,7 @@ static bool almIntTriggered = false;
 
 
 int main() {
+//	setupSpeakerInterrupts();
 	setupDataObjects();
 	configRTC();
 	printf("test\n");
