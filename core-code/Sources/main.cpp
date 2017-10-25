@@ -15,6 +15,7 @@
 #include "ux.h"
 #include "rtc-code.h"
 #include "switch-interrupt.h"
+#include "bmp.h"
 
 
 // Allow access to USBDM methods without USBDM:: prefix
@@ -190,6 +191,7 @@ void actionOnSwitch() {
 				break;
 			case 2:
 				//current screen = alarm tone set screen;
+				currentScreen = alarmScreen;
 				break;
 			case 3:
 				currentScreen = timeScreen;
@@ -232,7 +234,7 @@ void drawScreen(enum screens currentScreen) {
 		drawTimeScreen(currentTime);
 		break;
 	case alarmScreen :
-//		drawAlarmScreen(&currentTime);
+		drawAlarmScreen();
 		break;
 	case timeSetScreen :
 		drawTimeSetScreen(timeSetScreenData);

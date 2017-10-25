@@ -19,6 +19,7 @@
 #include "i2c.h"
 #include "ux.h"
 #include "main.h"
+#include "bmp.h"
 
 // Allow access to USBDM methods without USBDM:: prefix
 using namespace USBDM;
@@ -375,6 +376,7 @@ void drawAlarmSetScreen (alarmSetData alarmScrSettings) {
 
 void drawAlarmScreen () {
 	lcd.putStr("Get The Water My African Amigo", CENTRE_X-120, CENTRE_Y+40, largeFont, FOREGROUND_COLOUR, PINK);
+//	lcd.drawBitmap();
 
 }
 

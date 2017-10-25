@@ -22,6 +22,7 @@ void drawTimeScreen(struct timeData currentTime);
 void drawTimeSetScreen(struct timeSetData setData);
 void drawAlarmSetScreen(struct alarmSetData alarmSettingsData);
 void drawSettingsScreen(struct settingsScrData, struct globalOpt);
+void drawAlarmScreen();
 
 void clearScreen();
 
