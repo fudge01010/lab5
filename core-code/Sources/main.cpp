@@ -42,7 +42,7 @@ static bool switchActioned = false;
 
 int main() {
 	setupDataObjects();
-	timeSetScreenData.cursor = 0;
+//	timeSetScreenData.cursor = 0;
 //	currentTime.hr = 0;
 //	currentTime.min = 0;
 //	currentTime.sec = 0;
@@ -213,6 +213,8 @@ void setupDataObjects() {
 	buttonData.triggered = false;
 	buttonData.direction = noSwitch;
 
+	timeSetScreenData.cursor = 2;
+
 	//start at clock screen
 
 	prevScreen, currentScreen = timeScreen;
@@ -233,7 +235,7 @@ void drawScreen(enum screens currentScreen) {
 //		drawAlarmScreen(&currentTime);
 		break;
 	case timeSetScreen :
-		drawTimeSetScreen(&currentTime, timeSetScreenData);
+		drawTimeSetScreen(timeSetScreenData);
 		break;
 	case alarmSetScreen :
 		drawAlarmSetScreen(alarmSetScreenData);
