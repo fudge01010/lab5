@@ -203,7 +203,7 @@ void drawScreen(enum screens currentScreen) {
 //		drawAlarmSetScreen(&alarmTime, &alarmSetScreenData);
 		break;
 	case settingsScreen :
-		drawSettingsScreen(&settingsScreenData, &globalSettings);
+		drawSettingsScreen(settingsScreenData, globalSettings);
 		break;
 	default:
 		break;
