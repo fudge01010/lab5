@@ -21,13 +21,9 @@
 // Allow access to USBDM methods without USBDM:: prefix
 using namespace USBDM;
 
-using Led   = USBDM::GpioA<2,USBDM::ActiveLow>;
-
-
 // static struct for the current time;
 struct timeData currentTime;
 ////struct containing the time of the alarm
-static struct timeData alarmTime;
 static struct timeSetData timeSetScreenData;
 static struct alarmSetData alarmSetScreenData;
 static struct settingsScrData settingsScreenData;
@@ -39,29 +35,20 @@ static enum screens currentScreen;
 static enum screens prevScreen;
 
 static bool switchActioned = false;
+static bool secIntTriggered = false;
+static bool almIntTriggered = false;
 
 
 int main() {
 	setupDataObjects();
-//	timeSetScreenData.cursor = 0;
-//	currentTime.hr = 0;
-//	currentTime.min = 0;
-//	currentTime.sec = 0;
+	configRTC();
 	printf("test\n");
 	configure5wayInterrupt(&buttonData);
-	if (buttonData.triggered == true)
-	{
-		printf("holy fuck I am good");
-	}
-	if (buttonData.direction == southSwitch) {
-		printf("really fkn good \n");
-	}
 	printf("config'd\n");
 
    for(;;) {
-	   buttonData = pullFromMem();
 	   //mainline loop
-//	   	  //during debugging, this is our "heartbeat" LED"
+	   buttonData = pullFromMem();
 	   if (buttonData.triggered && !switchActioned) {
 		   //if a button has been pressed and we haven't done anything about it, process it
 		   switchActioned = true;
@@ -71,17 +58,12 @@ int main() {
 		   //if we've released the button yet action flag is still set, clear it.
 		   switchActioned = false;
 	   }
-//	      Led::toggle();
-////		  asm("wfi");
-		  waitMS(100);
-		  printf("%d\n", currentScreen);
-		  drawScreen(currentScreen);
-//		  printf("sw is %d\n", buttonData.triggered);
-//		  currentTime.sec += 1;
-//	   printf("l\n");
-//	   switchTest();
-	   timeTest(&currentTime);
+	   secIntTriggered = rtcSecInt();
+	   almIntTriggered = rtcAlarmInt();
 
+	   waitMS(50);
+	   drawScreen(currentScreen);
+//	   printf("%d\n", currentScreen);
 
    }
    //never reach
@@ -208,18 +190,16 @@ void actionOnSwitch() {
 	}
 }
 
-
-
 void setupDataObjects() {
 	//set up switch data
 	buttonData.triggered = false;
 	buttonData.direction = noSwitch;
 
-	timeSetScreenData.cursor = 2;
+//	timeSetScreenData.cursor = 2;
 
 	//start at clock screen
 
-	prevScreen, currentScreen = timeScreen;
+	prevScreen = currentScreen = timeScreen;
 }
 
 void drawScreen(enum screens currentScreen) {
