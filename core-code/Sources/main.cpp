@@ -15,7 +15,7 @@
 #include "ux.h"
 #include "rtc-code.h"
 #include "switch-interrupt.h"
-#include "bmp.h"
+#include "notes.h"
 
 
 // Allow access to USBDM methods without USBDM:: prefix
@@ -40,15 +40,14 @@ static bool almIntTriggered = false;
 
 
 int main() {
+	setupSpeakerInterrupts();
 	setupDataObjects();
 	configRTC();
-
 	printf("test\n");
 	configure5wayInterrupt(&buttonData);
 	printf("config'd\n");
 
    for(;;) {
-	   getTime(&currentTime);
 	   //mainline loop
 	   buttonData = pullFromMem();
 	   if (buttonData.triggered && !switchActioned) {
@@ -62,7 +61,7 @@ int main() {
 	   }
 	   secIntTriggered = rtcSecInt();
 	   almIntTriggered = rtcAlarmInt();
-
+	   getTime(&currentTime);
 	   waitMS(50);
 	   drawScreen(currentScreen);
 //	   printf("%d\n", currentScreen);
