@@ -20,7 +20,7 @@ using namespace USBDM;
 static volatile uint16_t halfPeriod;
 
 // Waveform period to generate
-static const float WAVEFORM_PERIOD = 1*ms;
+static const float WAVEFORM_PERIOD = 0.5*ms;
 
 using Timer = Ftm1;
 using TimerChannel = Ftm1Channel<1>;
@@ -53,6 +53,7 @@ void setupSpeakerInterrupts() {
 	// Calculate half-period in timer ticks
 	// Must be done after timer clock configuration (above)
 	halfPeriod = Timer::convertSecondsToTicks(WAVEFORM_PERIOD/2.0);
+	printf("%i\n", halfPeriod);
 
 	// Set callback function
 	Timer::setChannelCallback(ftmCallback);
@@ -70,6 +71,7 @@ void setupSpeakerInterrupts() {
 	TimerChannel::configure(
 		 FtmChMode_OutputCompareToggle, //  Output Compare with pin toggle
 		 FtmChannelIrq_Enable);         //  + interrupts on events
+
 }
 
 void setNoteFreq(uint16_t noteFreq) {
