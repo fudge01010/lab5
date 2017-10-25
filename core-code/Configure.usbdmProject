@@ -141,7 +141,7 @@
    <item key="/FTM0/ftm_sc_cpwms"                          value="false" />
    <item key="/FTM0/ftm_sc_ps"                             value="0" />
    <item key="/FTM0/ftm_sc_toie"                           value="false" />
-   <item key="/FTM0/irqHandlingMethod"                     value="$NotInstalled" />
+   <item key="/FTM0/irqHandlingMethod"                     value="$ClassMethod" />
    <item key="/FTM0/irqLevel"                              value="0" />
    <item key="/FTM0/minimumResolution"                     value="100" />
    <item key="/FTM1/ftmExternalClock"                      value="0" />
@@ -152,7 +152,7 @@
    <item key="/FTM1/ftm_sc_cpwms"                          value="false" />
    <item key="/FTM1/ftm_sc_ps"                             value="0" />
    <item key="/FTM1/ftm_sc_toie"                           value="false" />
-   <item key="/FTM1/irqHandlingMethod"                     value="$NotInstalled" />
+   <item key="/FTM1/irqHandlingMethod"                     value="$ClassMethod" />
    <item key="/FTM1/irqLevel"                              value="0" />
    <item key="/FTM1/minimumResolution"                     value="100" />
    <item key="/Flash/FlashType"                            value="ftfl" />

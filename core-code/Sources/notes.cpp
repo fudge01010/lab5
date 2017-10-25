@@ -80,6 +80,9 @@ void setNoteFreq(uint16_t noteFreq) {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
+void disableTest() {
+//	TimerChannel::
+}
 
 //void playSong (e_note freq, int8_t duration ) {
 //	bool isPlaying;

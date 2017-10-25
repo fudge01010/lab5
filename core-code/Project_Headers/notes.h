@@ -47,6 +47,7 @@ typedef struct s_noteInfo {
  */
 void setupSpeakerInterrupts();
 
+void disableTest();
 
 /*
  *  Takes an integer and adjusts the timer's frequency.
