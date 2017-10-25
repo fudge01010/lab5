@@ -7,6 +7,8 @@
 
 #ifndef SOURCES_NOTES_H_
 #define SOURCES_NOTES_H_
+#include <stdint.h>
+
 
 enum e_octave {
 	o1 = 1,
@@ -40,7 +42,7 @@ struct noteInfo {
 	int8_t duration;
 };
 
-struct noteInfo saints[24];
+struct noteInfo saints[37];
 
 
 
