@@ -282,6 +282,7 @@ void clearScreen(){
 }
 
 void drawSettingsScreen (struct settingsScrData settingsData, struct globalOpt globalOpts) {
+
 	//Bottom
 	lcd.drawLine(CENTRE_X-60, CENTRE_Y-60, CENTRE_X+60, CENTRE_Y-60, WHITE);
 	//Left
@@ -313,7 +314,9 @@ void drawSettingsScreen (struct settingsScrData settingsData, struct globalOpt g
 void drawAlarmSetScreen (alarmSetData alarmScrSettings) {
 //	0,0 bottom left with ribbon cable upwards
 
-//  lcd.putStr("Memes", 30, 10, largeFont, FOREGROUND_COLOUR, PINK);
+	lcd.
+	lcd.putStr("Set Alarm", CENTRE_X+32, CENTRE_Y+56, largeFont, FOREGROUND_COLOUR, PINK);
+
 
 	//Centre Position
 //	lcd.drawLine(CENTRE_X+100, CENTRE_Y, CENTRE_X-100, CENTRE_Y, RED);
@@ -366,7 +369,7 @@ void drawTimeSetScreen(struct timeData *currentTime, struct timeSetData setData)
 //	char* hr = 0;
 //	sprintf(hr, "%d", h);
 
-//  lcd.putStr("Memes", 30, 10, largeFont, FOREGROUND_COLOUR, PINK);
+lcd.putStr("Set Time", CENTRE_X+32, CENTRE_Y+56, largeFont, FOREGROUND_COLOUR, PINK);
 
 	//Centre Position
 //	lcd.drawLine(CENTRE_X+100, CENTRE_Y, CENTRE_X-100, CENTRE_Y, RED);
@@ -403,7 +406,7 @@ void drawTimeSetScreen(struct timeData *currentTime, struct timeSetData setData)
 	}
 
     //TimeSeconds
-	if (setData.cursor == 3) {
+	if (setData.cursor == 2) {
 		//draw the kerser here
 		lcd.putStr(intToChar(currentTime->sec), CENTRE_X-32, CENTRE_Y-8, largeFont, BLACK, WHITE);
 	} else {
