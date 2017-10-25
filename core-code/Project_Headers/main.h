@@ -8,6 +8,10 @@
 #ifndef SOURCES_MAIN_H_
 #define SOURCES_MAIN_H_
 
+#ifndef PROJECT_HEADERS_SWITCH_INTERRUPT_H_
+#include "switch-interrupt.h"
+
+#endif
 /*
  * @name time struct
  * @brief struct that keeps 3 ints containing an h/m/s.
@@ -17,6 +21,16 @@ struct timeData {
 	int8_t min;
 	int8_t sec;
 };
+
+enum SwitchValue {
+   noSwitch,    //!< No Switch or multiple switches pressed
+   northSwitch, //!< North Switch
+   eastSwitch,  //!< East Switch
+   southSwitch, //!< South Switch
+   westSwitch,  //!< West Switch
+   centreSwitch,//!< Centre Switch
+};
+
 
 struct timeSetData {
 	int8_t cursor;
@@ -32,7 +46,7 @@ struct settingsScrData {
 
 typedef struct buttonState {
 	bool triggered;
-	int8_t direction;
+	enum SwitchValue direction;
 } _buttonState;
 
 struct buttonState;
@@ -43,6 +57,7 @@ enum song {
 	marchingIn = 0,
 	sandstorm
 };
+
 
 struct globalOpt {
 	enum song song;
@@ -65,6 +80,8 @@ enum screens {
 
 int main();
 void drawScreen(enum screens currentScreen);
+void setupDataObjects();
+void actionOnSwitch();
 
 
 #endif /* SOURCES_MAIN_H_ */

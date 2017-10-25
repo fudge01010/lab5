@@ -12,14 +12,7 @@
 /**
  * Enum representing the different possible switch values
  */
-enum SwitchValue {
-   noSwitch,    //!< No Switch or multiple switches pressed
-   eastSwitch,  //!< East Switch
-   southSwitch, //!< South Switch
-   westSwitch,  //!< West Switch
-   centreSwitch,//!< Centre Switch
-   northSwitch, //!< North Switch
-};
+
 
 
 //static struct buttonState swState;
@@ -30,6 +23,6 @@ struct buttonState;
 
 
 void configure5wayInterrupt(struct buttonState *buttonData);
-void switchTest();
+//void switchTest();
 
 #endif /* PROJECT_HEADERS_SWITCH_INTERRUPT_H_ */

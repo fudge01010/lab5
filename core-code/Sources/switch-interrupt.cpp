@@ -22,10 +22,8 @@ static volatile SwitchValue switchValue = noSwitch;
 // PIT frequency (Hz)
 static constexpr int PIT_FREQUENCY = 100;
 
-// Debounce time in 1/PIT_FREQUENCY units
-static constexpr int DEBOUNCE_TIME = 5;
-
 static SwitchValue lastSwitch = noSwitch;
+static struct buttonState swState;
 
 /**
  * Get switch names for printing
@@ -34,22 +32,22 @@ static SwitchValue lastSwitch = noSwitch;
  *
  * @return Switch value as string
  */
-static const char *getSwitchName(SwitchValue switchValue) {
-
-	static const char *switchNames[] = {
-	      "noSwitch",
-	      "eastSwitch",
-	      "southSwitch",
-	      "westSwitch",
-	      "centreSwitch",
-	      "northSwitch",
-	   };
-
-   if (switchValue>=(sizeof(switchNames)/sizeof(switchNames[0]))) {
-      return "Illegal switch value";
-   }
-   return switchNames[switchValue];
-}
+//static const char *getSwitchName(SwitchValue switchValue) {
+//
+//	static const char *switchNames[] = {
+//	      "noSwitch",
+//		  "northSwitch",
+//	      "eastSwitch",
+//	      "southSwitch",
+//	      "westSwitch",
+//	      "centreSwitch",
+//	   };
+//
+//   if (switchValue>=(sizeof(switchNames)/sizeof(switchNames[0]))) {
+//      return "Illegal switch value";
+//   }
+//   return switchNames[switchValue];
+//}
 
 
 /*
@@ -59,14 +57,14 @@ static const char *getSwitchName(SwitchValue switchValue) {
  */
 void deBouncer() {
    // Encode all switch values as a single binary number
-   int currentSwitch =
+   int swInt =
       (EastSwitch::read()<<4)|
       (SouthSwitch::read()<<3)|
       (WestSwitch::read()<<2)|
       (CentreSwitch::read()<<1)|
       (NorthSwitch::read()<<0);
 
-   switch (currentSwitch) {
+   switch (swInt) {
    case 1:
 	   switchValue = northSwitch;
 	   break;
@@ -86,8 +84,14 @@ void deBouncer() {
 	   switchValue = noSwitch;
 	   break;
    }
-//   printf("k\n");
-//   printf("%i\n", currentSwitch);
+
+   SwitchValue currentSwitch = switchValue;
+   if ((currentSwitch != lastSwitch) && (currentSwitch != noSwitch)) {
+	   swState.triggered = true;
+	   swState.direction = currentSwitch;
+//   printf("Changed #%s\n", getSwitchName(currentSwitch));  //debug print line - V bad as interrupt handler
+   }
+   lastSwitch = currentSwitch;
 
 }
 
@@ -95,9 +99,9 @@ void deBouncer() {
 void configure5wayInterrupt(struct buttonState *buttonData) {
 	//do some stuff yo
 
-   struct buttonState &swState = *buttonData;
+   static struct buttonState &swState = *buttonData;
 //   *swState->triggered = false;
-	buttonData->triggered = true;
+//	buttonData->triggered = true;
 
    EastSwitch::setInput(PinPull_Up, PinIrq_None, PinFilter_Passive);
    SouthSwitch::setInput(PinPull_Up, PinIrq_None, PinFilter_Passive);
@@ -123,17 +127,17 @@ void configure5wayInterrupt(struct buttonState *buttonData) {
    checkError();
 }
 
-void switchTest() {
-
-//   for(;;) {
-      // Report switch changes
-      SwitchValue currentSwitch = switchValue;
-//      printf("Changed #%d\n", currentSwitch);
-      if ((currentSwitch != lastSwitch) && (currentSwitch != noSwitch)) {
-         printf("Changed #%s\n", getSwitchName(currentSwitch));
-      }
-      lastSwitch = currentSwitch;
-//   }
+//void switchTest() {
 //
-//   return 0;
-}
+////   for(;;) {
+//      // Report switch changes
+//      SwitchValue currentSwitch = switchValue;
+////      printf("Changed #%d\n", currentSwitch);
+//      if ((currentSwitch != lastSwitch) && (currentSwitch != noSwitch)) {
+//         printf("Changed #%s\n", getSwitchName(currentSwitch));
+//      }
+//      lastSwitch = currentSwitch;
+////   }
+////
+////   return 0;
+//}
