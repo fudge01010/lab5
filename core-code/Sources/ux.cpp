@@ -377,7 +377,7 @@ void drawAlarmSetScreen (alarmSetData alarmScrSettings) {
 void drawAlarmScreen () {
 	lcd.putStr("- - Alarm - -", CENTRE_X-52, CENTRE_Y+40, largeFont, FOREGROUND_COLOUR, RED);
 	lcd.putStr("Noot", CENTRE_X-12, CENTRE_Y+22, largeFont, FOREGROUND_COLOUR, BLUE);
-	lcd.putStr("Noot", CENTRE_X-12, CENTRE_Y+4, largeFont, FOREGROUND_COLOUR, GREY);
+	lcd.putStr("Noot", CENTRE_X-12, CENTRE_Y+4, largeFont, FOREGROUND_COLOUR, GRAY);
 
 }
 
