@@ -81,7 +81,10 @@ void setNoteFreq(uint16_t noteFreq) {
 void playSong (e_note freq, int8_t duration ) {
 	bool isPlaying;
 	if (isPlaying) {
-
+		for (int i; i <= sizeof(saints[]); i++) {
+			//Play song
+			saints[i];
+		}
 	}
 }
 

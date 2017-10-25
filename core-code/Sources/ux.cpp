@@ -373,6 +373,11 @@ void drawAlarmSetScreen (alarmSetData alarmScrSettings) {
 	}
 }
 
+void drawAlarmScreen () {
+	lcd.putStr("Get The Water My African Amigo", CENTRE_X-120, CENTRE_Y+40, largeFont, FOREGROUND_COLOUR, PINK);
+
+}
+
 void drawTimeSetScreen(struct timeSetData setData) {
 //	0,0 bottom left with ribbon cable upwards
 
