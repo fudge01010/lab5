@@ -357,26 +357,32 @@ void drawTimeSetScreen(struct timeData *currentTime, struct timeSetData setData)
 	//Right
 	lcd.drawLine(CENTRE_X+50, CENTRE_Y+30, CENTRE_X+50, CENTRE_Y-30, WHITE);
 
-	 //DotDot
+	 //DotDot HH:MM
 	lcd.putStr(":", CENTRE_X-16, CENTRE_Y-8, largeFont, FOREGROUND_COLOUR, BACKGROUND_COLOUR);
+	//DotDot MM:SS
+	lcd.putStr(":", CENTRE_X+8, CENTRE_Y-8, largeFont, FOREGROUND_COLOUR, BACKGROUND_COLOUR);
+
 	//TimeHours
-	if (setData.cursor == 0)
-	{
+	if (setData.cursor == 0) {
 		//draw the kerser here
 		lcd.putStr(intToChar(currentTime->hr), CENTRE_X-32, CENTRE_Y-8, largeFont, BLACK, WHITE);
 	} else {
 		lcd.putStr(intToChar(currentTime->hr), CENTRE_X-32, CENTRE_Y-8, largeFont, FOREGROUND_COLOUR, BACKGROUND_COLOUR);
 	}
 
-
-
-
-    //TimeMinutes
-    lcd.putStr(intToChar(currentTime->min), CENTRE_X-8, CENTRE_Y-8, largeFont, FOREGROUND_COLOUR, BACKGROUND_COLOUR);
-
-    //DotDot
-    lcd.putStr(":", CENTRE_X+8, CENTRE_Y-8, largeFont, FOREGROUND_COLOUR, BACKGROUND_COLOUR);
+	//TimeMinutes
+	if (setData.cursor == 1) {
+		//draw the kerser here
+		lcd.putStr(intToChar(currentTime->min), CENTRE_X-32, CENTRE_Y-8, largeFont, BLACK, WHITE);
+	} else {
+		lcd.putStr(intToChar(currentTime->min), CENTRE_X-32, CENTRE_Y-8, largeFont, FOREGROUND_COLOUR, BACKGROUND_COLOUR);
+	}
 
     //TimeSeconds
-    lcd.putStr(intToChar(currentTime->sec), CENTRE_X+16, CENTRE_Y-8, largeFont, FOREGROUND_COLOUR, BACKGROUND_COLOUR);
+	if (setData.cursor == 3) {
+		//draw the kerser here
+		lcd.putStr(intToChar(currentTime->sec), CENTRE_X-32, CENTRE_Y-8, largeFont, BLACK, WHITE);
+	} else {
+		lcd.putStr(intToChar(currentTime->sec), CENTRE_X-32, CENTRE_Y-8, largeFont, FOREGROUND_COLOUR, BACKGROUND_COLOUR);
+	}
 }
