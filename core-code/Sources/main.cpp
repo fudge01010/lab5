@@ -42,6 +42,7 @@ static bool almIntTriggered = false;
 int main() {
 	setupSpeakerInterrupts();
 //	setNoteFreq(48000);
+	startAlarm();
 	setupDataObjects();
 	configRTC();
 	printf("test\n");
