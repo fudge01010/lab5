@@ -12,9 +12,9 @@
 #include "hardware.h"
 #include <stdint.h>
 
-void playSong (e_note freq, duration duration ) {
-
-}
+//void playSong (e_note freq, duration duration ) {
+//
+//}
 
 
 void loadSongSaints () {
