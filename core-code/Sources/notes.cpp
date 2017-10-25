@@ -12,9 +12,12 @@
 #include "hardware.h"
 #include <stdint.h>
 
+void playSong (e_note freq, duration duration ) {
+
+}
 
 
-void loadSong () {
+void loadSongSaints () {
 	//First line 4
 	saints[0].octave = o6;
 	saints[0].note = c;
