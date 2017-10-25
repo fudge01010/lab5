@@ -53,6 +53,20 @@ time_t systimeFormat(int seconds) {
 
 }
 
+void setRTCTime(timeData time2set){
+	//
+	uint32_t epochSeconds = 0;
+	epochSeconds += time2set.hr * 3600;
+	epochSeconds += time2set.min * 60;
+	epochSeconds += time2set.sec;
+	USBDM::Rtc::setTime(epochSeconds);
+
+}
+
+void setRTCAlarm(timeData time2set){
+	//
+}
+
 void timeTest(struct timeData *currentTime) {
 	time_t rawtime;
   struct tm * timeinfo;

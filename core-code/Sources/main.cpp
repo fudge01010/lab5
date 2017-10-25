@@ -133,7 +133,8 @@ void actionOnSwitch() {
 		}
 		if (buttonData.direction == centreSwitch) {
 			//set the time based on the current programmed time.
-			//setTime(timeSetScreenData.time2set);
+			setRTCTime(timeSetScreenData.time2set);
+			currentScreen = timeScreen;
 		}
 		break;
 	case alarmSetScreen:
@@ -168,7 +169,7 @@ void actionOnSwitch() {
 		if (buttonData.direction == centreSwitch) {
 			//set the alarm time based on the current programmed time.
 			//setAlarm(alarmSetScreenData.time2set);
-			currentScreen = timeScreen;
+			currentScreen = settingsScreen;
 		}
 		break;
 	case settingsScreen:
@@ -182,6 +183,7 @@ void actionOnSwitch() {
 			switch (settingsScreenData.cursor){
 			case 0:
 				currentScreen = timeSetScreen;
+				timeSetScreenData.time2set = currentTime;
 				break;
 			case 1:
 				currentScreen = alarmSetScreen;
@@ -203,6 +205,8 @@ void actionOnSwitch() {
 		break;
 	}
 }
+
+
 
 void setupDataObjects() {
 	//set up switch data

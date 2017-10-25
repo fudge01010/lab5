@@ -14,4 +14,7 @@ time_t systimeFormat(int seconds);
 void handler();
 void timeTest(struct timeData *currentTime);
 
+void setRTCTime(timeData time2set);
+void setRTCAlarm(timeData time2set);
+
 #endif /* PROJECT_HEADERS_RTC_CODE_H_ */
