@@ -277,6 +277,10 @@ void drawTimeScreen(timeData currentTime) {
     lcd.putStr(intToChar(currentTime.sec), CENTRE_X+16, CENTRE_Y-8, largeFont, FOREGROUND_COLOUR, BACKGROUND_COLOUR);
 }
 
+void clearScreen(){
+	lcd.clear(BLACK);
+}
+
 void drawSettingsScreen (struct settingsScrData settingsData, struct globalOpt globalOpts) {
 	//Bottom
 	lcd.drawLine(CENTRE_X-60, CENTRE_Y-60, CENTRE_X+60, CENTRE_Y-60, WHITE);

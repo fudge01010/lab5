@@ -21,5 +21,6 @@
 void drawTimeScreen(struct timeData currentTime);
 void drawTimeSetScreen(struct timeData *currentTime, struct timeSetData setData);
 void drawSettingsScreen(struct settingsScrData, struct globalOpt);
+void clearScreen()
 
 #endif /* SOURCES_UX_H_ */
