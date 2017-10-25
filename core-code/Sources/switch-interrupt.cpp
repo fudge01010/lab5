@@ -20,10 +20,10 @@ using NorthSwitch  = USBDM::GpioB<1,ActiveLow>;
 static volatile SwitchValue switchValue = noSwitch;
 
 // PIT frequency (Hz)
-static constexpr int PIT_FREQUENCY = 2;
+static constexpr int PIT_FREQUENCY = 100;
 
 static SwitchValue lastSwitch = noSwitch;
-static volatile struct buttonState buttonData;
+static buttonState buttonData;
 
 /**
  * Get switch names for printing
@@ -32,22 +32,22 @@ static volatile struct buttonState buttonData;
  *
  * @return Switch value as string
  */
-static const char *getSwitchName(SwitchValue switchValue) {
-
-	static const char *switchNames[] = {
-	      "noSwitch",
-		  "northSwitch",
-	      "eastSwitch",
-	      "southSwitch",
-	      "westSwitch",
-	      "centreSwitch",
-	   };
-
-   if (switchValue>=(sizeof(switchNames)/sizeof(switchNames[0]))) {
-      return "Illegal switch value";
-   }
-   return switchNames[switchValue];
-}
+//static const char *getSwitchName(SwitchValue switchValue) {
+//
+//	static const char *switchNames[] = {
+//	      "noSwitch",
+//		  "northSwitch",
+//	      "eastSwitch",
+//	      "southSwitch",
+//	      "westSwitch",
+//	      "centreSwitch",
+//	   };
+//
+//   if (switchValue>=(sizeof(switchNames)/sizeof(switchNames[0]))) {
+//      return "Illegal switch value";
+//   }
+//   return switchNames[switchValue];
+//}
 
 
 /*
@@ -104,7 +104,7 @@ void deBouncer() {
 void configure5wayInterrupt(buttonState *swState) {
 	//do some stuff yo
 
-   buttonState &buttonData = *swState;
+//   buttonState &buttonData = *swState;
    buttonData.triggered = false;
    buttonData.direction = southSwitch;
 //	buttonData->triggered = true;
@@ -133,7 +133,10 @@ void configure5wayInterrupt(buttonState *swState) {
    checkError();
 }
 
-//void switchTest() {
+struct buttonState pullFromMem() {
+//	return struct buttonState *buttonData;
+	return buttonData;
+}
 //
 ////   for(;;) {
 //      // Report switch changes

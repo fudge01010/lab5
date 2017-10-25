@@ -57,25 +57,23 @@ int main() {
 	printf("config'd\n");
 
    for(;;) {
+	   buttonData = pullFromMem();
 	   //mainline loop
 //	   	  //during debugging, this is our "heartbeat" LED"
 	   if (buttonData.triggered && !switchActioned) {
 		   //if a button has been pressed and we haven't done anything about it, process it
 		   switchActioned = true;
 		   printf("actioning\n");
-//		   actionOnSwitch();
+		   actionOnSwitch();
 	   } else if (!buttonData.triggered && switchActioned) {
 		   //if we've released the button yet action flag is still set, clear it.
 		   switchActioned = false;
 	   }
-	   if (buttonData.triggered == true)
-	   	{
-	   		printf("holy fuck I am good");
-	   	}
 //	      Led::toggle();
 ////		  asm("wfi");
 		  waitMS(250);
-		  drawScreen((screens)0);
+		  printf("%d\n", currentScreen);
+		  drawScreen(currentScreen);
 //		  printf("sw is %d\n", buttonData.triggered);
 //		  currentTime.sec += 1;
 //	   printf("l\n");
@@ -205,7 +203,7 @@ void drawScreen(enum screens currentScreen) {
 //		drawAlarmSetScreen(&alarmTime, &alarmSetScreenData);
 		break;
 	case settingsScreen :
-//		drawSettingsScreen(&settingsScreenData, &globalSettings);
+		drawSettingsScreen(&settingsScreenData, &globalSettings);
 		break;
 	default:
 		break;

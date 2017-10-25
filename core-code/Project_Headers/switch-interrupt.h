@@ -24,5 +24,6 @@ struct buttonState;
 
 void configure5wayInterrupt(struct buttonState *buttonData);
 //void switchTest();
+struct buttonState pullFromMem();
 
 #endif /* PROJECT_HEADERS_SWITCH_INTERRUPT_H_ */
