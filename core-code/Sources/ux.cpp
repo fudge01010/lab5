@@ -373,7 +373,7 @@ void drawAlarmSetScreen (alarmSetData alarmScrSettings) {
 	}
 }
 
-void drawTimeSetScreen(struct timeData *currentTime, struct timeSetData setData) {
+void drawTimeSetScreen(struct timeSetData setData) {
 //	0,0 bottom left with ribbon cable upwards
 
 //	int8_t hr = currentTime->hr;
@@ -403,24 +403,24 @@ lcd.putStr("Set Time", CENTRE_X-32, CENTRE_Y+40, largeFont, FOREGROUND_COLOUR, P
 	//TimeHours
 	if (setData.cursor == 0) {
 		//draw the kerser here
-		lcd.putStr(intToChar(currentTime->hr), CENTRE_X-32, CENTRE_Y-8, largeFont, WHITE, BLUE);
+		lcd.putStr(intToChar(setData.time2set.hr), CENTRE_X-32, CENTRE_Y-8, largeFont, WHITE, BLUE);
 	} else {
-		lcd.putStr(intToChar(currentTime->hr), CENTRE_X-32, CENTRE_Y-8, largeFont, FOREGROUND_COLOUR, BACKGROUND_COLOUR);
+		lcd.putStr(intToChar(setData.time2set.hr), CENTRE_X-32, CENTRE_Y-8, largeFont, FOREGROUND_COLOUR, BACKGROUND_COLOUR);
 	}
 
 	//TimeMinutes
 	if (setData.cursor == 1) {
 		//draw the kerser here
-		lcd.putStr(intToChar(currentTime->min), CENTRE_X-8, CENTRE_Y-8, largeFont, WHITE, BLUE);
+		lcd.putStr(intToChar(setData.time2set.min), CENTRE_X-8, CENTRE_Y-8, largeFont, WHITE, BLUE);
 	} else {
-		lcd.putStr(intToChar(currentTime->min), CENTRE_X-8, CENTRE_Y-8, largeFont, FOREGROUND_COLOUR, BACKGROUND_COLOUR);
+		lcd.putStr(intToChar(setData.time2set.min), CENTRE_X-8, CENTRE_Y-8, largeFont, FOREGROUND_COLOUR, BACKGROUND_COLOUR);
 	}
 
     //TimeSeconds
 	if (setData.cursor == 2) {
 		//draw the kerser here
-		lcd.putStr(intToChar(currentTime->sec), CENTRE_X+16, CENTRE_Y-8, largeFont, WHITE, BLUE);
+		lcd.putStr(intToChar(setData.time2set.sec), CENTRE_X+16, CENTRE_Y-8, largeFont, WHITE, BLUE);
 	} else {
-		lcd.putStr(intToChar(currentTime->sec), CENTRE_X+16, CENTRE_Y-8, largeFont, FOREGROUND_COLOUR, BACKGROUND_COLOUR);
+		lcd.putStr(intToChar(setData.time2set.sec), CENTRE_X+16, CENTRE_Y-8, largeFont, FOREGROUND_COLOUR, BACKGROUND_COLOUR);
 	}
 }
