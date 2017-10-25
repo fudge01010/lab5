@@ -12,9 +12,78 @@
 #include "hardware.h"
 #include <stdint.h>
 
-//void playSong (e_note freq, duration duration ) {
-//
-//}
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+using namespace USBDM;
+
+// Half-period for timer in ticks
+// This variable is shared with the interrupt routine
+static volatile uint16_t halfPeriod;
+
+// Waveform period to generate
+static const float WAVEFORM_PERIOD = 1*ms;
+
+using Timer = Ftm1;
+using TimerChannel = Ftm1Channel<1>;
+using spkGnd = GpioA<5, ActiveLow>;
+
+static void ftmCallback(uint8_t status) {
+
+   // Check channel
+   if (status & TimerChannel::CHANNEL_MASK) {
+      // Note: The pin is toggled directly by hardware
+      // Re-trigger at last interrupt time + timerHalfPeriodInTicks
+      TimerChannel::setDeltaEventTime(halfPeriod);
+   }
+}
+
+void initNotes() {
+	spkGnd::setOutput(PinDriveStrength_High, PinDriveMode_OpenDrain, PinSlewRate_Fast);
+
+	Timer::configure(
+		 FtmMode_LeftAlign,      // Left-aligned is required for OC/IC
+		 FtmClockSource_System,  // Bus clock usually
+		 FtmPrescale_1);         // The prescaler will be re-calculated later
+
+	// Set IC/OC measurement period to accommodate maximum period + 10%
+	// This adjusts the prescaler value but does not change the clock source
+	Timer::setMeasurementPeriod(1.1*WAVEFORM_PERIOD/2.0);
+
+	// Calculate half-period in timer ticks
+	// Must be done after timer clock configuration (above)
+	halfPeriod = Timer::convertSecondsToTicks(WAVEFORM_PERIOD/2.0);
+
+	// Set callback function
+	Timer::setChannelCallback(ftmCallback);
+
+	// Enable interrupts for entire timer
+	Timer::enableNvicInterrupts();
+
+	// Configure pin associated with channel
+	TimerChannel::setDriveStrength(PinDriveStrength_High);
+
+	// Trigger 1st interrupt at now+100
+	TimerChannel::setRelativeEventTime(100);
+
+	// Configure the channel
+	TimerChannel::configure(
+		 FtmChMode_OutputCompareToggle, //  Output Compare with pin toggle
+		 FtmChannelIrq_Enable);         //  + interrupts on events
+}
+
+void setNoteFreq(uint16_t noteFreq) {
+	halfPeriod = noteFreq;
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+void playSong (e_note freq, int8_t duration ) {
+	bool isPlaying;
+	if (isPlaying) {
+
+	}
+}
 
 
 void loadSongSaints () {
@@ -174,8 +243,9 @@ void loadSongSaints () {
 	saints[36].octave = o6;
 	saints[36].note = c;
 	saints[36].duration = 1;
+
 /////////////////////////////////// STOP
-//	saints[0].octave = 6;
-//	saints[0].note = STOP;
-//	saints[0].duration = 0;
+	saints[37].octave = o6;
+	saints[37].note = stop;
+	saints[37].duration = 0;
 }

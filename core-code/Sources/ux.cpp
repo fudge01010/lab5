@@ -292,21 +292,33 @@ void drawSettingsScreen (struct settingsScrData settingsData, struct globalOpt g
 	//Right
 	lcd.drawLine(CENTRE_X+60, CENTRE_Y+60, CENTRE_X+60, CENTRE_Y-60, WHITE);
 
-	if (settingsData.cursor == 0)
-		lcd.putStr("Set Time", CENTRE_X-36, CENTRE_Y+35, largeFont, FOREGROUND_COLOUR, BLUE);
-	else
-		lcd.putStr("Set Time", CENTRE_X-36, CENTRE_Y+35, largeFont, FOREGROUND_COLOUR, BACKGROUND_COLOUR);
+	if (settingsData.cursor == 0) {
+		lcd.putStr("Set Time", CENTRE_X-32, CENTRE_Y+35, largeFont, FOREGROUND_COLOUR, BLUE);
+	}
+	else {
+		lcd.putStr("Set Time", CENTRE_X-32, CENTRE_Y+35, largeFont, FOREGROUND_COLOUR, BACKGROUND_COLOUR);
+	}
 
-	if (settingsData.cursor == 1)
-		lcd.putStr("Set Alarm Time", CENTRE_X-44, CENTRE_Y+16, largeFont, FOREGROUND_COLOUR, BLUE);
-	else
-		lcd.putStr("Set Alarm Time", CENTRE_X-44, CENTRE_Y+16, largeFont, FOREGROUND_COLOUR, BACKGROUND_COLOUR);
+	if (settingsData.cursor == 1) {
+		lcd.putStr("Set Alarm Time", CENTRE_X-56, CENTRE_Y+16, largeFont, FOREGROUND_COLOUR, BLUE);
+	}
+	else {
+		lcd.putStr("Set Alarm Time", CENTRE_X-56, CENTRE_Y+16, largeFont, FOREGROUND_COLOUR, BACKGROUND_COLOUR);
+	}
 
-	lcd.putStr("Set alarm tone", CENTRE_X-36, CENTRE_Y-4, largeFont, FOREGROUND_COLOUR, BACKGROUND_COLOUR);
+	if (settingsData.cursor == 2) {
+		lcd.putStr("Set Alarm Tone", CENTRE_X-56, CENTRE_Y-4, largeFont, FOREGROUND_COLOUR, BLUE);
+	}
+	else {
+		lcd.putStr("Set Alarm Tone", CENTRE_X-56, CENTRE_Y-4, largeFont, FOREGROUND_COLOUR, BACKGROUND_COLOUR);
+	}
 
-	lcd.putStr("Back...", CENTRE_X-28, CENTRE_Y-24, largeFont, FOREGROUND_COLOUR, BACKGROUND_COLOUR);
-
-//	lcd.putStr("Back", CENTRE_X-32, CENTRE_Y-40, largeFont, FOREGROUND_COLOUR, BACKGROUND_COLOUR);
+	if (settingsData.cursor == 3) {
+		lcd.putStr("Back...", CENTRE_X-28, CENTRE_Y-24, largeFont, FOREGROUND_COLOUR, BLUE);
+	}
+	else {
+		lcd.putStr("Back...", CENTRE_X-28, CENTRE_Y-24, largeFont, FOREGROUND_COLOUR, BACKGROUND_COLOUR);
+	}
 
 
 }
@@ -314,8 +326,7 @@ void drawSettingsScreen (struct settingsScrData settingsData, struct globalOpt g
 void drawAlarmSetScreen (alarmSetData alarmScrSettings) {
 //	0,0 bottom left with ribbon cable upwards
 
-	lcd.
-	lcd.putStr("Set Alarm", CENTRE_X+32, CENTRE_Y+56, largeFont, FOREGROUND_COLOUR, PINK);
+	lcd.putStr("Set Alarm", CENTRE_X-36, CENTRE_Y+40, largeFont, FOREGROUND_COLOUR, PINK);
 
 
 	//Centre Position
@@ -369,7 +380,7 @@ void drawTimeSetScreen(struct timeData *currentTime, struct timeSetData setData)
 //	char* hr = 0;
 //	sprintf(hr, "%d", h);
 
-lcd.putStr("Set Time", CENTRE_X+32, CENTRE_Y+56, largeFont, FOREGROUND_COLOUR, PINK);
+lcd.putStr("Set Time", CENTRE_X-32, CENTRE_Y+40, largeFont, FOREGROUND_COLOUR, PINK);
 
 	//Centre Position
 //	lcd.drawLine(CENTRE_X+100, CENTRE_Y, CENTRE_X-100, CENTRE_Y, RED);
@@ -392,7 +403,7 @@ lcd.putStr("Set Time", CENTRE_X+32, CENTRE_Y+56, largeFont, FOREGROUND_COLOUR, P
 	//TimeHours
 	if (setData.cursor == 0) {
 		//draw the kerser here
-		lcd.putStr(intToChar(currentTime->hr), CENTRE_X-32, CENTRE_Y-8, largeFont, BLACK, WHITE);
+		lcd.putStr(intToChar(currentTime->hr), CENTRE_X-32, CENTRE_Y-8, largeFont, WHITE, BLUE);
 	} else {
 		lcd.putStr(intToChar(currentTime->hr), CENTRE_X-32, CENTRE_Y-8, largeFont, FOREGROUND_COLOUR, BACKGROUND_COLOUR);
 	}
@@ -400,16 +411,16 @@ lcd.putStr("Set Time", CENTRE_X+32, CENTRE_Y+56, largeFont, FOREGROUND_COLOUR, P
 	//TimeMinutes
 	if (setData.cursor == 1) {
 		//draw the kerser here
-		lcd.putStr(intToChar(currentTime->min), CENTRE_X-32, CENTRE_Y-8, largeFont, BLACK, WHITE);
+		lcd.putStr(intToChar(currentTime->min), CENTRE_X-8, CENTRE_Y-8, largeFont, WHITE, BLUE);
 	} else {
-		lcd.putStr(intToChar(currentTime->min), CENTRE_X-32, CENTRE_Y-8, largeFont, FOREGROUND_COLOUR, BACKGROUND_COLOUR);
+		lcd.putStr(intToChar(currentTime->min), CENTRE_X-8, CENTRE_Y-8, largeFont, FOREGROUND_COLOUR, BACKGROUND_COLOUR);
 	}
 
     //TimeSeconds
 	if (setData.cursor == 2) {
 		//draw the kerser here
-		lcd.putStr(intToChar(currentTime->sec), CENTRE_X-32, CENTRE_Y-8, largeFont, BLACK, WHITE);
+		lcd.putStr(intToChar(currentTime->sec), CENTRE_X+16, CENTRE_Y-8, largeFont, WHITE, BLUE);
 	} else {
-		lcd.putStr(intToChar(currentTime->sec), CENTRE_X-32, CENTRE_Y-8, largeFont, FOREGROUND_COLOUR, BACKGROUND_COLOUR);
+		lcd.putStr(intToChar(currentTime->sec), CENTRE_X+16, CENTRE_Y-8, largeFont, FOREGROUND_COLOUR, BACKGROUND_COLOUR);
 	}
 }

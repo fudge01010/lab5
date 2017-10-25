@@ -22,18 +22,19 @@ enum e_octave {
 };
 
 enum e_note {
-	c = 2093,
-	cs = 2217,
-	d = 2349,
-	ds = 2489,
-	e = 2637,
-	f = 2794,
-	fs = 2960,
-	g = 3136,
-	gs = 3320,
-	a = 3520,
-	as = 3729,
-	b = 3951
+	c = 1047,
+	cs = 1109,
+	d = 1175,
+	ds = 1245,
+	e = 1319,
+	f = 1397,
+	fs = 1480,
+	g = 1568,
+	gs = 1661,
+	a = 1760,
+	as = 1865,
+	b = 1976,
+	stop
 };
 
 struct noteInfo {
@@ -44,7 +45,18 @@ struct noteInfo {
 
 struct noteInfo saints[37];
 
+/*
+ * Sets up the FTM module for our note playing
+ */
+void initNotes();
 
+
+/*
+ *  Takes an integer and adjusts the timer's frequency.
+ *
+ *   @param freq      takes the desired note frequency
+ */
+void setNoteFreq(uint16_t freq);
 
 
 #endif /* SOURCES_NOTES_H_ */
