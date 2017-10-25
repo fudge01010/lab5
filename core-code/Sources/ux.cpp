@@ -375,8 +375,9 @@ void drawAlarmSetScreen (alarmSetData alarmScrSettings) {
 }
 
 void drawAlarmScreen () {
-	lcd.putStr("Get The Water My African Amigo", CENTRE_X-120, CENTRE_Y+40, largeFont, FOREGROUND_COLOUR, PINK);
-//	lcd.drawBitmap();
+	lcd.putStr("- - Alarm - -", CENTRE_X-52, CENTRE_Y+40, largeFont, FOREGROUND_COLOUR, RED);
+	lcd.putStr("Noot", CENTRE_X-12, CENTRE_Y+22, largeFont, FOREGROUND_COLOUR, BLUE);
+	lcd.putStr("Noot", CENTRE_X-12, CENTRE_Y+4, largeFont, FOREGROUND_COLOUR, GREY);
 
 }
 
