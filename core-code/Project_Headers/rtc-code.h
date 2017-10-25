@@ -9,6 +9,7 @@
 #define PROJECT_HEADERS_RTC_CODE_H_
 #include <ctime>
 #include "main.h"
+#include <time.h>
 
 
 //time_t systimeFormat(int seconds);
@@ -16,6 +17,7 @@
 
 
 void configRTC();
+void getTime(struct timeData *currentTime);
 
 void setRTCTime(timeData time2set);
 void setRTCAlarm(timeData time2set);

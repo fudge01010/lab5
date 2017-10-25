@@ -12,6 +12,8 @@
 #include "system.h"
 #include "derivative.h"
 #include "hardware.h"
+#include <time.h>
+
 
 static bool rtcSecTrig = false;
 static bool rtcAlarmTrig = false;
@@ -48,6 +50,17 @@ void alarmCallback(uint32_t timeSinceEpoch) {
 //
 //}
 
+void getTime(struct timeData *currentTime) {
+ 	time_t rawtime;
+ 	 struct tm * timeinfo;
+	//  char buffer[80];
+	time (&rawtime);
+	 timeinfo = localtime(&rawtime);
+	 currentTime->hr = timeinfo->tm_hour;
+	 currentTime->min = timeinfo->tm_min;
+ 	 currentTime->sec = timeinfo->tm_sec;
+}
+
 void setRTCTime(timeData time2set){
 	//
 	uint32_t epochSeconds = 0;
@@ -69,9 +82,9 @@ void setRTCAlarm(timeData time2set){
 }
 
 void configRTC() {
-	USBDM::Rtc::setSecondsCallback(secCallback);
-	USBDM::Rtc::setAlarmCallback(alarmCallback);
-    USBDM::Rtc::enableNvicInterrupts();
+//	USBDM::Rtc::setSecondsCallback(secCallback);
+//	USBDM::Rtc::setAlarmCallback(alarmCallback);
+//    USBDM::Rtc::enableNvicInterrupts();
 }
 
 
