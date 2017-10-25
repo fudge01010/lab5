@@ -291,15 +291,15 @@ void drawSettingsScreen (struct settingsScrData settingsData, struct globalOpt g
 	//Right
 	lcd.drawLine(CENTRE_X+60, CENTRE_Y+60, CENTRE_X+60, CENTRE_Y-60, WHITE);
 
-	lcd.putStr("Live Time", CENTRE_X-36, CENTRE_Y+35, largeFont, FOREGROUND_COLOUR, BACKGROUND_COLOUR);
+	lcd.putStr("Set Time", CENTRE_X-36, CENTRE_Y+35, largeFont, FOREGROUND_COLOUR, BACKGROUND_COLOUR);
 
-	lcd.putStr("Alarm Clock", CENTRE_X-44, CENTRE_Y+16, largeFont, FOREGROUND_COLOUR, BACKGROUND_COLOUR);
+	lcd.putStr("Set Alarm Time", CENTRE_X-44, CENTRE_Y+16, largeFont, FOREGROUND_COLOUR, BACKGROUND_COLOUR);
 
-	lcd.putStr("Stop Watch", CENTRE_X-36, CENTRE_Y-4, largeFont, FOREGROUND_COLOUR, BACKGROUND_COLOUR);
+	lcd.putStr("Set alarm tone", CENTRE_X-36, CENTRE_Y-4, largeFont, FOREGROUND_COLOUR, BACKGROUND_COLOUR);
 
-	lcd.putStr("Bangers", CENTRE_X-28, CENTRE_Y-24, largeFont, FOREGROUND_COLOUR, BACKGROUND_COLOUR);
+	lcd.putStr("Back...", CENTRE_X-28, CENTRE_Y-24, largeFont, FOREGROUND_COLOUR, BACKGROUND_COLOUR);
 
-	lcd.putStr("Settings", CENTRE_X-32, CENTRE_Y-40, largeFont, FOREGROUND_COLOUR, BACKGROUND_COLOUR);
+//	lcd.putStr("Back", CENTRE_X-32, CENTRE_Y-40, largeFont, FOREGROUND_COLOUR, BACKGROUND_COLOUR);
 
 
 }

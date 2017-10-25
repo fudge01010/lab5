@@ -35,6 +35,7 @@ static struct globalOpt globalSettings;
 static buttonState buttonData;
 
 static enum screens currentScreen;
+static enum screens prevScreen;
 
 static bool switchActioned = false;
 
@@ -71,7 +72,7 @@ int main() {
 	   }
 //	      Led::toggle();
 ////		  asm("wfi");
-		  waitMS(250);
+		  waitMS(100);
 		  printf("%d\n", currentScreen);
 		  drawScreen(currentScreen);
 //		  printf("sw is %d\n", buttonData.triggered);
@@ -170,7 +171,32 @@ void actionOnSwitch() {
 		}
 		break;
 	case settingsScreen:
-		//
+		if (buttonData.direction == southSwitch && settingsScreenData.cursor < 3)
+			settingsScreenData.cursor++;
+		if (buttonData.direction == northSwitch && settingsScreenData.cursor > 0)
+			settingsScreenData.cursor--;
+		if (buttonData.direction == centreSwitch)
+		{
+			//switch based on cursor position
+			switch (settingsScreenData.cursor){
+			case 0:
+				currentScreen = timeSetScreen;
+				break;
+			case 1:
+				currentScreen = alarmSetScreen;
+				break;
+			case 2:
+				//current screen = alarm tone set screen;
+				break;
+			case 3:
+				currentScreen = timeScreen;
+				break;
+			default:
+				break;
+			}
+
+
+		}
 		break;
 	default:
 		break;
@@ -183,11 +209,16 @@ void setupDataObjects() {
 	buttonData.direction = noSwitch;
 
 	//start at clock screen
-	currentScreen = timeScreen;
+
+	prevScreen, currentScreen = timeScreen;
 }
 
 void drawScreen(enum screens currentScreen) {
-//	enum screens &currentScreen
+//	enum screens &currentScreen;
+	if (prevScreen != currentScreen) {
+		clearScreen();
+		prevScreen = currentScreen;
+	}
 	switch (currentScreen) {
 	//
 	case timeScreen :
