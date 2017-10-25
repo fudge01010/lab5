@@ -20,10 +20,10 @@ using NorthSwitch  = USBDM::GpioB<1,ActiveLow>;
 static volatile SwitchValue switchValue = noSwitch;
 
 // PIT frequency (Hz)
-static constexpr int PIT_FREQUENCY = 100;
+static constexpr int PIT_FREQUENCY = 2;
 
 static SwitchValue lastSwitch = noSwitch;
-static struct buttonState swState;
+static volatile struct buttonState buttonData;
 
 /**
  * Get switch names for printing
@@ -32,22 +32,22 @@ static struct buttonState swState;
  *
  * @return Switch value as string
  */
-//static const char *getSwitchName(SwitchValue switchValue) {
-//
-//	static const char *switchNames[] = {
-//	      "noSwitch",
-//		  "northSwitch",
-//	      "eastSwitch",
-//	      "southSwitch",
-//	      "westSwitch",
-//	      "centreSwitch",
-//	   };
-//
-//   if (switchValue>=(sizeof(switchNames)/sizeof(switchNames[0]))) {
-//      return "Illegal switch value";
-//   }
-//   return switchNames[switchValue];
-//}
+static const char *getSwitchName(SwitchValue switchValue) {
+
+	static const char *switchNames[] = {
+	      "noSwitch",
+		  "northSwitch",
+	      "eastSwitch",
+	      "southSwitch",
+	      "westSwitch",
+	      "centreSwitch",
+	   };
+
+   if (switchValue>=(sizeof(switchNames)/sizeof(switchNames[0]))) {
+      return "Illegal switch value";
+   }
+   return switchNames[switchValue];
+}
 
 
 /*
@@ -85,22 +85,28 @@ void deBouncer() {
 	   break;
    }
 
+
    SwitchValue currentSwitch = switchValue;
+//   printf("sw is  #%s\n", getSwitchName(currentSwitch));  //debug print line - V bad as interrupt handler
+
    if ((currentSwitch != lastSwitch) && (currentSwitch != noSwitch)) {
-	   swState.triggered = true;
-	   swState.direction = currentSwitch;
-//   printf("Changed #%s\n", getSwitchName(currentSwitch));  //debug print line - V bad as interrupt handler
+	   buttonData.triggered = true;
+	   buttonData.direction = currentSwitch;
+	   printf("yaaas\n");
    }
+   if (currentSwitch == noSwitch && buttonData.triggered)
+	   buttonData.triggered = false;
    lastSwitch = currentSwitch;
 
 }
 
 
-void configure5wayInterrupt(struct buttonState *buttonData) {
+void configure5wayInterrupt(buttonState *swState) {
 	//do some stuff yo
 
-   static struct buttonState &swState = *buttonData;
-//   *swState->triggered = false;
+   buttonState &buttonData = *swState;
+   buttonData.triggered = false;
+   buttonData.direction = southSwitch;
 //	buttonData->triggered = true;
 
    EastSwitch::setInput(PinPull_Up, PinIrq_None, PinFilter_Passive);

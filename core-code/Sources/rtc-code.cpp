@@ -56,14 +56,14 @@ time_t systimeFormat(int seconds) {
 void timeTest(struct timeData *currentTime) {
 	time_t rawtime;
   struct tm * timeinfo;
-  char buffer[80];
+//  char buffer[80];
 
   time (&rawtime);
   timeinfo = localtime(&rawtime);
   currentTime->hr = timeinfo->tm_hour;
   currentTime->min = timeinfo->tm_min;
   currentTime->sec = timeinfo->tm_sec;
-  strftime(buffer, sizeof(buffer), "%d-%m-%Y %I:%M:%S\n", timeinfo);
+//  strftime(buffer, sizeof(buffer), "%I:%M:%S\n", timeinfo);
 //  printf(buffer);
 }
 

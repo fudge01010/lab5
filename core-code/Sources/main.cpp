@@ -46,11 +46,13 @@ int main() {
 //	currentTime.min = 0;
 //	currentTime.sec = 0;
 	printf("test\n");
-	buttonData.triggered = false;
 	configure5wayInterrupt(&buttonData);
 	if (buttonData.triggered == true)
 	{
 		printf("holy fuck I am good");
+	}
+	if (buttonData.direction == southSwitch) {
+		printf("really fkn good \n");
 	}
 	printf("config'd\n");
 
@@ -60,15 +62,21 @@ int main() {
 	   if (buttonData.triggered && !switchActioned) {
 		   //if a button has been pressed and we haven't done anything about it, process it
 		   switchActioned = true;
-		   actionOnSwitch();
+		   printf("actioning\n");
+//		   actionOnSwitch();
 	   } else if (!buttonData.triggered && switchActioned) {
 		   //if we've released the button yet action flag is still set, clear it.
 		   switchActioned = false;
 	   }
-	      Led::toggle();
+	   if (buttonData.triggered == true)
+	   	{
+	   		printf("holy fuck I am good");
+	   	}
+//	      Led::toggle();
 ////		  asm("wfi");
 		  waitMS(250);
-		  drawScreen((screens)2);
+		  drawScreen((screens)0);
+//		  printf("sw is %d\n", buttonData.triggered);
 //		  currentTime.sec += 1;
 //	   printf("l\n");
 //	   switchTest();
@@ -175,6 +183,9 @@ void setupDataObjects() {
 	//set up switch data
 	buttonData.triggered = false;
 	buttonData.direction = noSwitch;
+
+	//start at clock screen
+	currentScreen = timeScreen;
 }
 
 void drawScreen(enum screens currentScreen) {
