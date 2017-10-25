@@ -301,7 +301,7 @@
    <item key="/PIT/pit_mcr_frz"                            value="false" />
    <item key="/PIT/pit_tctrl_ch1"                          value="false" />
    <item key="/PIT/pit_tctrl_ch3"                          value="false" />
-   <item key="/RTC/irqAlarmHandler"                        value="$NotInstalled" />
+   <item key="/RTC/irqAlarmHandler"                        value="$ClassMethod" />
    <item key="/RTC/irqLevel"                               value="0" />
    <item key="/RTC/irqSecondsHandler"                      value="$ClassMethod" />
    <item key="/RTC/rtc_clkout"                             value="32768" />

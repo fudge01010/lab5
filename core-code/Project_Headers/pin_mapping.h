@@ -223,7 +223,7 @@ public:
       RTC_RAR_TSRR(1);  // Time Seconds Register Read
 
    //! Class based callback handler has been installed in vector table
-   static constexpr bool irqHandlerInstalled = (0 == 1);
+   static constexpr bool irqHandlerInstalled = (1 == 1);
 
    //! Default IRQ level
    static constexpr uint32_t irqLevel =  0;

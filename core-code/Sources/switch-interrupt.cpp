@@ -92,7 +92,7 @@ void deBouncer() {
    if ((currentSwitch != lastSwitch) && (currentSwitch != noSwitch)) {
 	   buttonData.triggered = true;
 	   buttonData.direction = currentSwitch;
-	   printf("yaaas\n");
+//	   printf("yaaas\n");
    }
    if (currentSwitch == noSwitch && buttonData.triggered)
 	   buttonData.triggered = false;

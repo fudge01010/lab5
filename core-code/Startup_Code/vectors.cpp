@@ -155,7 +155,6 @@ void ADC0_IRQHandler(void)                    WEAK_DEFAULT_HANDLER;
 void CMP0_IRQHandler(void)                    WEAK_DEFAULT_HANDLER;
 void CMP1_IRQHandler(void)                    WEAK_DEFAULT_HANDLER;
 void CMT_IRQHandler(void)                     WEAK_DEFAULT_HANDLER;
-void RTC_Alarm_IRQHandler(void)               WEAK_DEFAULT_HANDLER;
 void PIT0_IRQHandler(void)                    WEAK_DEFAULT_HANDLER;
 void PIT2_IRQHandler(void)                    WEAK_DEFAULT_HANDLER;
 void PIT3_IRQHandler(void)                    WEAK_DEFAULT_HANDLER;
@@ -229,7 +228,7 @@ VectorTable const __vector_table = {
       USBDM::Ftm0::irqHandler,       /*   41,   25  FlexTimer Module                                                                 */
       USBDM::Ftm1::irqHandler,       /*   42,   26  FlexTimer Module                                                                 */
       CMT_IRQHandler,                /*   43,   27  Carrier Modulator Transmitter                                                    */
-      RTC_Alarm_IRQHandler,          /*   44,   28  Real Time Clock                                                                  */
+      USBDM::Rtc::irqAlarmHandler,   /*   44,   28  Real Time Clock                                                                  */
       USBDM::Rtc::irqSecondsHandler, /*   45,   29  Real Time Clock                                                                  */
       PIT0_IRQHandler,               /*   46,   30  Periodic Interrupt Timer                                                         */
       USBDM::Pit::irq1Handler,       /*   47,   31  Periodic Interrupt Timer                                                         */

@@ -22,6 +22,7 @@ static bool rtcAlarmTrig = false;
 
 void secCallback(uint32_t timeSinceEpoch) {
 	rtcSecTrig = true;
+//	printf("callbacked");
 }
 
 void alarmCallback(uint32_t timeSinceEpoch) {
@@ -78,13 +79,15 @@ void setRTCAlarm(timeData time2set){
 	epochSeconds += time2set.min * 60;
 	epochSeconds += time2set.sec;
 	USBDM::Rtc::setAlarm(epochSeconds);
+	printf("%d",epochSeconds);
 
 }
 
 void configRTC() {
 //	USBDM::Rtc::setSecondsCallback(secCallback);
-//	USBDM::Rtc::setAlarmCallback(alarmCallback);
-//    USBDM::Rtc::enableNvicInterrupts();
+	USBDM::Rtc::setAlarmCallback(alarmCallback);
+    USBDM::Rtc::enableNvicInterrupts();
+
 }
 
 

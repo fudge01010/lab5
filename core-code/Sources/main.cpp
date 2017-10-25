@@ -54,14 +54,20 @@ int main() {
 	   if (buttonData.triggered && !switchActioned) {
 		   //if a button has been pressed and we haven't done anything about it, process it
 		   switchActioned = true;
-		   printf("actioning\n");
+//		   printf("actioning\n");
 		   actionOnSwitch();
 	   } else if (!buttonData.triggered && switchActioned) {
 		   //if we've released the button yet action flag is still set, clear it.
 		   switchActioned = false;
 	   }
-	   secIntTriggered = rtcSecInt();
+//	   secIntTriggered = rtcSecInt();
 	   almIntTriggered = rtcAlarmInt();
+	   if (almIntTriggered)
+	   {
+		   currentScreen = alarmScreen;
+		   printf("shit tyrone\n");
+		   //startAlarm();
+	   }
 	   getTime(&currentTime);
 	   waitMS(50);
 	   drawScreen(currentScreen);
@@ -153,7 +159,7 @@ void actionOnSwitch() {
 		}
 		if (buttonData.direction == centreSwitch) {
 			//set the alarm time based on the current programmed time.
-			//setAlarm(alarmSetScreenData.time2set);
+			setRTCAlarm(alarmSetScreenData.time2set);
 			currentScreen = settingsScreen;
 		}
 		break;
