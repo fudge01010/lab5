@@ -8,6 +8,10 @@
 #ifndef PROJECT_HEADERS_NOTES_H_
 #define PROJECT_HEADERS_NOTES_H_
 
+/*
+ * 	@name octave enum
+ * 	@brief enum for the different octaves used in the tone generator.
+ */
 enum e_octave {
 	o1 = 1,
 	o2,
@@ -19,6 +23,10 @@ enum e_octave {
 	o8
 };
 
+/*
+ * 	@name note enum
+ * 	@brief enum for the different notes/frequencies used in the tone generator.
+ */
 enum e_note {
 	c = 23436, //1047,
 	cs = 22692, //1109,
@@ -35,28 +43,53 @@ enum e_note {
 	stop = 1000
 };
 
+/*
+ * 	@name noteInfo struct
+ * 	@brief struct for the noteInfo, contains the provided saints songs.
+ */
 typedef struct s_noteInfo {
 	e_octave octave;
 	e_note note;
 	int8_t duration;
 }noteInfo;
 
+/*
+ * 	@name noteIndex int
+ * 	@brief int to keep track of the note playing.
+ */
 static int noteIndex;
 
 /*
- * Sets up the FTM module for our note playing
+ * @name noteIndex int
+ * @breif Sets up the FTM module for our note playing.
  */
 void setupSpeakerInterrupts();
 
-void disableTest();
-void startAlarm ();
-void stopAlarm ();
-void loadSongSaints ();
-void musicHandler();
 /*
- *  Takes an integer and adjusts the timer's frequency.
- *
- *   @param freq      takes the desired note frequency
+ * @name startAlarm
+ * @breif Sets playingTrack to true, which allows the tone to play.
+ */
+void startAlarm ();
+
+/*
+ * @name stopAlarm
+ * @breif Sets playingTrack to false, which stops the tone from playing.
+ */
+void stopAlarm ();
+
+/*
+ * @name loadSongSaints
+ * @breif Loads the saints tone struct for playing.
+ */
+void loadSongSaints ();
+
+
+void musicHandler();
+
+/*
+ * @name setNoteFreq
+ * @breif Takes an integer and adjusts the timer's frequency.
+ * @param freq      takes the desired note frequency
  */
 void setNoteFreq(uint16_t freq);
 

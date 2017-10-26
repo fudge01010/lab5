@@ -12,6 +12,7 @@
 #include "switch-interrupt.h"
 
 #endif
+
 /*
  * @name time struct
  * @brief struct that keeps 3 ints containing an h/m/s.
@@ -22,6 +23,10 @@ struct timeData {
 	int8_t sec;
 };
 
+/*
+ * @name SwitchValue enum
+ * @brief enum that contains the switch values
+ */
 enum SwitchValue {
    noSwitch,    //!< No Switch or multiple switches pressed
    northSwitch, //!< North Switch
@@ -31,36 +36,60 @@ enum SwitchValue {
    centreSwitch,//!< Centre Switch
 };
 
-
+/*
+ * @name timeSetData stuct
+ * @brief struct that the timeSetData
+ */
 struct timeSetData {
 	int8_t cursor;
 	struct timeData time2set;
 };
 
+/*
+ * @name alarmSetData stuct
+ * @brief struct that the alarmSetData
+ */
 struct alarmSetData {
 	int8_t cursor;
 	struct timeData time2set;
 };
 
+/*
+ * @name settingsScrData stuct
+ * @brief struct that the settingsScrData
+ */
 struct settingsScrData {
 	int8_t cursor;
 };
 
+/*
+ * @name buttonState
+ * @brief defing a struct that keeps the buttonState
+ */
 typedef struct buttonState {
 	bool triggered;
 	enum SwitchValue direction;
 } _buttonState;
 
+/*
+ * @name buttonState struct
+ * @brief struct that keeps the buttonState
+ */
 struct buttonState;
 
-//static buttonState buttonState;
-
+/*
+ * @name song enum
+ * @brief enum that contains the possible songs
+ */
 enum song {
 	marchingIn = 0,
 	sandstorm
 };
 
-
+/*
+ * @name globalOpt
+ * @brief struct that has the song enum //////////////////////////////////////????????????????????????????????????????????????????
+ */
 struct globalOpt {
 	enum song song;
 };
