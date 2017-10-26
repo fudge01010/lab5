@@ -137,7 +137,9 @@ void setupSpeakerInterrupts() {
 }
 
 void musicHandler() {
-	if (nextNote) {
+	if (!playingTrack) {
+		setNoteFreq(1000);
+	} else if (nextNote) {
 		if (playingTrack)
 		{
 			if (duration == 0)

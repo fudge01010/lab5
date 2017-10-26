@@ -96,6 +96,7 @@ void actionOnSwitch() {
 		//if we're alarming, any button press should go back to the time
 		if (buttonData.direction != noSwitch) {
 			currentScreen = timeScreen;
+			stopAlarm();
 		}
 		break;
 	case timeSetScreen:
