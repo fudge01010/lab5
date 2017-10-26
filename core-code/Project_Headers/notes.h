@@ -83,7 +83,10 @@ void stopAlarm ();
  */
 void loadSongSaints ();
 
-
+/*
+ * @name musicHandler
+ * @breif Controls the playing of the song
+ */
 void musicHandler();
 
 /*

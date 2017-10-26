@@ -51,6 +51,7 @@ static constexpr int BACKGROUND_COLOUR = (BLACK);
 // Colour for LCD foreground
 static constexpr int FOREGROUND_COLOUR = (WHITE);
 
+//Takes in time int8_t and sets it to a Char that lcd.putStr can use.
 const char* intToChar (int8_t time) {
 	switch(time) {
 			case 0:
@@ -239,15 +240,9 @@ const char* intToChar (int8_t time) {
 		}
 }
 
-//Draws cursor (is the sickest) on screen
+//Draws the default time screen
 void drawTimeScreen(timeData currentTime) {
 //	0,0 bottom left with ribbon cable upwards
-
-//	int8_t hr = currentTime->hr;
-//	char* hr = 0;
-//	sprintf(hr, "%d", h);
-
-//  lcd.putStr("Memes", 30, 10, largeFont, FOREGROUND_COLOUR, PINK);
 
 	//Centre Position
 //	lcd.drawLine(CENTRE_X+100, CENTRE_Y, CENTRE_X-100, CENTRE_Y, RED);
@@ -278,10 +273,12 @@ void drawTimeScreen(timeData currentTime) {
     lcd.putStr(intToChar(currentTime.sec), CENTRE_X+16, CENTRE_Y-8, largeFont, FOREGROUND_COLOUR, BACKGROUND_COLOUR);
 }
 
+//Clears the screen
 void clearScreen(){
 	lcd.clear(BLACK);
 }
 
+//Draws the menu/settings screen
 void drawSettingsScreen (struct settingsScrData settingsData, struct globalOpt globalOpts) {
 
 	//Bottom
@@ -320,10 +317,9 @@ void drawSettingsScreen (struct settingsScrData settingsData, struct globalOpt g
 	else {
 		lcd.putStr("Back...", CENTRE_X-28, CENTRE_Y-24, largeFont, FOREGROUND_COLOUR, BACKGROUND_COLOUR);
 	}
-
-
 }
 
+//Draws the alarm setting screen
 void drawAlarmSetScreen (alarmSetData alarmScrSettings) {
 //	0,0 bottom left with ribbon cable upwards
 
@@ -374,6 +370,7 @@ void drawAlarmSetScreen (alarmSetData alarmScrSettings) {
 	}
 }
 
+//Draws the alarm screen
 void drawAlarmScreen () {
 	lcd.putStr("- - Alarm - -", CENTRE_X-52, CENTRE_Y+40, largeFont, FOREGROUND_COLOUR, RED);
 	lcd.putStr("Noot", CENTRE_X-12, CENTRE_Y+22, largeFont, FOREGROUND_COLOUR, BLUE);
@@ -381,12 +378,9 @@ void drawAlarmScreen () {
 
 }
 
+//Draws the set time screen
 void drawTimeSetScreen(struct timeSetData setData) {
 //	0,0 bottom left with ribbon cable upwards
-
-//	int8_t hr = currentTime->hr;
-//	char* hr = 0;
-//	sprintf(hr, "%d", h);
 
 lcd.putStr("Set Time", CENTRE_X-32, CENTRE_Y+40, largeFont, FOREGROUND_COLOUR, PINK);
 

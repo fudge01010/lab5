@@ -36,6 +36,7 @@ static bool playingTrack = false;
 static int duration = 0;
 static bool nextNote = false;
 
+//callback for tone
 static void ftmCallback(uint8_t status) {
 
    // Check channel
@@ -46,19 +47,21 @@ static void ftmCallback(uint8_t status) {
    }
 }
 
+//callback for our note
 void ftmCallbackNote() {
 	printf("callback\n");
 	nextNote = true;
 }
 
+//Setup interrupts
 void setupSpeakerInterrupts() {
 	noteIndex = 0;
 	spkGnd::setOutput(PinDriveStrength_High, PinDriveMode_OpenDrain, PinSlewRate_Fast);
 
 	Timer::configure(
-		 FtmMode_LeftAlign,      // Left-aligned is required for OC/IC
-		 FtmClockSource_System,  // Bus clock usually
-		 FtmPrescale_1);         // The prescaler will be re-calculated later
+		FtmMode_LeftAlign,      // Left-aligned is required for OC/IC
+		FtmClockSource_System,  // Bus clock usually
+		FtmPrescale_1);         // The prescaler will be re-calculated later
 
 	// Set IC/OC measurement period to accommodate maximum period + 10%
 	// This adjusts the prescaler value but does not change the clock source
@@ -83,59 +86,24 @@ void setupSpeakerInterrupts() {
 	printf("test2\n");
 	// Configure the channel
 	TimerChannel::configure(
-		 FtmChMode_OutputCompareToggle, //  Output Compare with pin toggle
-		 FtmChannelIrq_Enable);         //  + interrupts on events
+		FtmChMode_OutputCompareToggle, //  Output Compare with pin toggle
+		FtmChannelIrq_Enable);         //  + interrupts on events
 
-
-
-
-/////////////////////////////////////////////////////////////////////////////////
 
 	Pit::configure();
 
-//   Pit::setCallback(1, deBouncer);
-   Pit::setCallback(2, ftmCallbackNote);
+	Pit::setCallback(2, ftmCallbackNote);
 
-   Pit::configureChannelInTicks(2, ::SystemBusClock/4);
+	Pit::configureChannelInTicks(2, ::SystemBusClock/4);
 
-   // Setup debouncer to execute every 5 ms (200 Hz)
-//   Pit::configureChannelInTicks(1, ::SystemBusClock/PIT_FREQUENCY);
+	// Enable interrupts on the channel
+	Pit::enableInterrupts(2);
 
-   // Enable interrupts on the channel
-   Pit::enableInterrupts(2);
-
-//   Pit::enableNvicInterrupts();
-
-   // Check for errors so far
-   checkError();
-
-//	TimerNote::configure(
-//		 FtmMode_LeftAlign,      // Left-aligned is required for OC/IC
-//		 FtmClockSource_System,  // Bus clock usually
-//		 FtmPrescale_1);         // The prescaler will be re-calculated later
-//
-//	// Set IC/OC measurement period to accommodate maximum period + 10%
-//	// This adjusts the prescaler value but does not change the clock source
-//	TimerNote::setMeasurementPeriod(1);
-//
-//	halfPeriodNote = TimerNote::convertSecondsToTicks(0.2);
-//	printf("%d\n", halfPeriodNote);
-//
-//
-//	// Set callback function
-//	TimerNote::setChannelCallback(ftmCallbackNote);
-//
-//	// Enable interrupts for entire timer
-//	TimerNote::enableNvicInterrupts();
-//
-//	printf("test3\n");
-//	// Trigger 1st interrupt at now+100
-//	TimerChannelNote::setRelativeEventTime(halfPeriodNote);
-//	printf("test4\n");
-
-
+	// Check for errors so far
+	checkError();
 }
 
+//Music handler controls the playing of the song
 void musicHandler() {
 	if (!playingTrack) {
 		setNoteFreq(1000);
@@ -158,19 +126,22 @@ void musicHandler() {
 	}
 }
 
+//Stop alarm
 void stopAlarm () {
 	playingTrack = false;
 }
 
+//Sets the note frequency for our song
 void setNoteFreq(uint16_t noteFreq) {
 	halfPeriod = noteFreq;
 }
 
+//Start alarm
 void startAlarm () {
 	playingTrack = true;
 }
 
-
+//Loads the notes/octave and durations for each note of the song.
 void loadSongSaints () {
 	//First line 4
 //	saints = noteInfo saints[37];
