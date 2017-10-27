@@ -51,7 +51,14 @@ static constexpr int BACKGROUND_COLOUR = (BLACK);
 // Colour for LCD foreground
 static constexpr int FOREGROUND_COLOUR = (WHITE);
 
-//Takes in time int8_t and sets it to a Char that lcd.putStr can use.
+/**
+ * takes int of time, returns a char array ("string") to print on LCD.
+ * Why? because we couldn't get sprintf to work.
+ *
+ * @param int8_t time to convert.
+ *
+ * @return char array (string) of converted time
+ */
 const char* intToChar (int8_t time) {
 	switch(time) {
 			case 0:

@@ -20,10 +20,30 @@
 
 struct buttonState;
 
+/*
+ * This callback is set programmatically
+ *
+ * It polls the switch and provides a debounced result in switchValue
+ */
+void deBouncer();
 
 
+/**
+ * Configures all 5-way button interrupts, pins, handlers, etc.
+ *
+ * @param address of swState variable - not used.
+ *
+ * @return nil
+ */
 void configure5wayInterrupt(struct buttonState *buttonData);
-//void switchTest();
+
+/**
+ * Returns the state of the debounced buttons
+ *
+ * @param nil
+ *
+ * @return buttonState struct - containing button status + button direction enum.
+ */
 struct buttonState pullFromMem();
 
 #endif /* PROJECT_HEADERS_SWITCH_INTERRUPT_H_ */

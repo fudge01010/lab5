@@ -25,30 +25,6 @@ static constexpr int PIT_FREQUENCY = 100;
 static SwitchValue lastSwitch = noSwitch;
 static buttonState buttonData;
 
-/**
- * Get switch names for printing
- *
- * @param switchValue Value to look up
- *
- * @return Switch value as string
- */
-//static const char *getSwitchName(SwitchValue switchValue) {
-//
-//	static const char *switchNames[] = {
-//	      "noSwitch",
-//		  "northSwitch",
-//	      "eastSwitch",
-//	      "southSwitch",
-//	      "westSwitch",
-//	      "centreSwitch",
-//	   };
-//
-//   if (switchValue>=(sizeof(switchNames)/sizeof(switchNames[0]))) {
-//      return "Illegal switch value";
-//   }
-//   return switchNames[switchValue];
-//}
-
 
 /*
  * This callback is set programmatically
@@ -100,14 +76,18 @@ void deBouncer() {
 
 }
 
-
+/**
+ * Configures all 5-way button interrupts, pins, handlers, etc.
+ *
+ * @param address of swState variable - not used.
+ *
+ * @return nil
+ */
 void configure5wayInterrupt(buttonState *swState) {
 	//do some stuff yo
 
-//   buttonState &buttonData = *swState;
    buttonData.triggered = false;
    buttonData.direction = southSwitch;
-//	buttonData->triggered = true;
 
    EastSwitch::setInput(PinPull_Up, PinIrq_None, PinFilter_Passive);
    SouthSwitch::setInput(PinPull_Up, PinIrq_None, PinFilter_Passive);
@@ -133,20 +113,14 @@ void configure5wayInterrupt(buttonState *swState) {
    checkError();
 }
 
+/**
+ * Returns the state of the debounced buttons
+ *
+ * @param nil
+ *
+ * @return buttonState struct - containing button status + button direction enum.
+ */
 struct buttonState pullFromMem() {
 //	return struct buttonState *buttonData;
 	return buttonData;
 }
-//
-////   for(;;) {
-//      // Report switch changes
-//      SwitchValue currentSwitch = switchValue;
-////      printf("Changed #%d\n", currentSwitch);
-//      if ((currentSwitch != lastSwitch) && (currentSwitch != noSwitch)) {
-//         printf("Changed #%s\n", getSwitchName(currentSwitch));
-//      }
-//      lastSwitch = currentSwitch;
-////   }
-////
-////   return 0;
-//}

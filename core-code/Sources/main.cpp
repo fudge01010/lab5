@@ -38,7 +38,13 @@ static bool switchActioned = false;
 static bool secIntTriggered = false;
 static bool almIntTriggered = false;
 
-
+/**
+ * Mainline loop.
+ *
+ * @param nil
+ *
+ * @return 0 (should never return).
+ */
 int main() {
 	setupSpeakerInterrupts();
 	setNoteFreq(1000);
@@ -82,6 +88,14 @@ int main() {
    return 0;
 }
 
+/**
+ * State machine for deciding logic on switch press.
+ * Updates module-global variables.
+ *
+ * @param nil
+ *
+ * @return nil
+ */
 void actionOnSwitch() {
 	//switch what happens depending on what screen we're on
 	switch (currentScreen) {
@@ -204,6 +218,13 @@ void actionOnSwitch() {
 	}
 }
 
+/**
+ * Sets up variables with data on beginning if they are required, and calls any load functions.
+ *
+ * @param nil
+ *
+ * @return nil
+ */
 void setupDataObjects() {
 	//set up switch data
 	buttonData.triggered = false;
@@ -218,6 +239,14 @@ void setupDataObjects() {
 	prevScreen = currentScreen = timeScreen;
 }
 
+/**
+ * Calls the UX draw calls depending on which screen.
+ * This is the MVC controller.
+ *
+ * @param screens enum of which screen to draw.
+ *
+ * @return nil
+ */
 void drawScreen(enum screens currentScreen) {
 //	enum screens &currentScreen;
 	if (prevScreen != currentScreen) {

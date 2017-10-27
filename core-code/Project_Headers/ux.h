@@ -49,4 +49,16 @@ void drawAlarmScreen();
  */
 void clearScreen();
 
+
+/**
+ * takes int of time, returns a char array ("string") to print on LCD.
+ * Why? because we couldn't get sprintf to work.
+ *
+ * @param int8_t time to convert.
+ *
+ * @return char array (string) of converted time
+ */
+const char* intToChar (int8_t time);
+
+
 #endif /* SOURCES_UX_H_ */

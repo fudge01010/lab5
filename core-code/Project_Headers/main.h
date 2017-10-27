@@ -88,7 +88,9 @@ enum song {
 
 /*
  * @name globalOpt
- * @brief struct that has the song enum //////////////////////////////////////????????????????????????????????????????????????????
+ * @brief struct that has which song we are playing
+ *
+ * @note: this was never used - we never implemented a second song. =[
  */
 struct globalOpt {
 	enum song song;
@@ -108,10 +110,42 @@ enum screens {
 };
 
 
-
+/**
+ * Mainline loop.
+ *
+ * @param nil
+ *
+ * @return 0 (should never return).
+ */
 int main();
+
+/**
+ * Calls the UX draw calls depending on which screen.
+ * This is the MVC controller.
+ *
+ * @param screens enum of which screen to draw.
+ *
+ * @return nil
+ */
 void drawScreen(enum screens currentScreen);
+
+/**
+ * Sets up variables with data on beginning if they are required, and calls any load functions.
+ *
+ * @param nil
+ *
+ * @return nil
+ */
 void setupDataObjects();
+
+/**
+ * State machine for deciding logic on switch press.
+ * Updates module-global variables.
+ *
+ * @param nil
+ *
+ * @return nil
+ */
 void actionOnSwitch();
 
 
